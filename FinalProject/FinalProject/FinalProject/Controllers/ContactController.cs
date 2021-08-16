@@ -27,8 +27,8 @@ namespace FinalProject.Controllers
             return View();
         }
 
-        [HttpPost]
         #region Message To Me
+        [HttpPost]
         public async Task<IActionResult> MessageToMe(string Email, string Subject, string Message, string Name)
         {
 
@@ -85,6 +85,7 @@ namespace FinalProject.Controllers
 
         #endregion
 
+        #region SendEmail
         public void SendEmail(string toMail, string subject, string mesBody)
         {
             string toEmail = toMail;
@@ -103,5 +104,7 @@ namespace FinalProject.Controllers
             client.Send(message);
 
         }
+
+        #endregion
     }
 }

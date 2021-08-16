@@ -23,11 +23,16 @@ namespace FinalProject.Controllers
             _userManager = userManager;
         }
 
+        #region Index
         public async Task<IActionResult> Index()
         {
-            List<Blog> blogs = await _dbContext.Blogs.Where(x => x.IsDelete == false).ToListAsync();
+            List<Blog> blogs = await _dbContext.Blogs.Where(x => x.IsDelete == false).Include(x => x.Comments.Where(x => x.IsDelete == false)).ToListAsync();
             return View(blogs);
         }
+
+        #endregion
+
+        #region Detail
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null)
@@ -46,6 +51,9 @@ namespace FinalProject.Controllers
 
             return View(commentViewModel);
         }
+
+        #endregion
+
         #region BlogComment
         [HttpPost]
         public async Task<IActionResult> BlogComment(string name, string email, string message)

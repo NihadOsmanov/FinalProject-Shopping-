@@ -19,6 +19,7 @@ $(document).ready(function () {
     })
 })
 
+//AdddToBasket
 
 $(document).ready(function () {
     $(document).on("click", "#AddBasket", function () {
@@ -33,6 +34,8 @@ $(document).ready(function () {
             });
     })
 })
+
+//BasketView Count Increase
 
 $(document).ready(function () {
     $(document).on("click", "#increase", function () {
@@ -49,6 +52,8 @@ $(document).ready(function () {
     })
 })
 
+//BasketView Count Decrease
+
 $(document).ready(function () {
     $(document).on("click", "#decrease", function () {
         var productId = $(this).val();
@@ -62,6 +67,8 @@ $(document).ready(function () {
         });
     })
 })
+
+//BasketView Delete
 
 $(document).ready(function () {
     $(document).on("click", "#remove", function () {
@@ -77,7 +84,6 @@ $(document).ready(function () {
     })
 })
 
-
 //Shop Search
 
 $(document).ready(function () {
@@ -86,8 +92,6 @@ $(document).ready(function () {
     $(document).on("keyup", "#shopSearch", function () {
         search = $(this).val().trim();
         $("#new-shop").empty()
-
-        //$(`#new-shop #shop-product-search`).remove();
         if (search.length > 0) {
             $.ajax({
                 url: '/Shop/Search?search=' + search,
@@ -99,7 +103,7 @@ $(document).ready(function () {
             });
         }
         else {
-            $("#old-courses").css("display", "block")
+            $("#old-courses").css("display", "flex")
         }
     })
 })
@@ -271,6 +275,7 @@ $(document).on('click', `#buttonCon`, function () {
     }
 })
 
+// Filter
 $(document).ready(function () {
     let arr = [];
 

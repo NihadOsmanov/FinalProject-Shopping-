@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
     HomeViewModel homeViewModel = Model;
-    int count = 0;
+    //int count = 0;
     bool isTrue = true;
     bool isTrue2 = true;
 }
@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="./product.html">
+                                    <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
                                         <h6>@product.Name</h6>
                                     </a>
                                     <span class="price-new">$@product.NewPice <span class="price-old"> $@product.OldPrice</span></span>
@@ -128,19 +128,18 @@
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
                     </div>*@
                     <nav>
-                        <ul class="nav nav-tabs" id="nav-tab" role="tablist" style="justify-content: center">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist" style="justify-content: center">
                             @foreach (var category in homeViewModel.Categories)
                             {
-                                <a class="nav-link @(isTrue?"active":"")" style="color: black; cursor: pointer" id="nav-@category.Id-tab" data-bs-toggle="tab" data-bs-target="#nav-@category.Id" role="tab" aria-controls="nav-@category.Id">@category.Name.ToLower()</a>
+                                <button type="button" class="nav-link @(isTrue?"active":"")" style="color: black; cursor: pointer" id="nav-@category.Name-tab" data-bs-toggle="tab" data-bs-target="#nav-@category.Name" role="tab" aria-controls="nav-@category.Name">@category.Name.ToLower()</button>
                                 isTrue = false;
                             }
-
-                        </ul>
+                        </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         @foreach (var category in homeViewModel.Categories)
                         {
-                            <div class="row no-slider fade @(isTrue2?"active show":"")" style="display: flex" id="nav-@category.Id" role="tabpanel" aria-labelledby="nav-@category.Id-tab">
+                            <div class="row no-slider fade @(isTrue2?"active show":"")" style="display: flex" id="nav-@category.Name" role="tabpanel" aria-labelledby="nav-@category.Name-tab">
                                 @foreach (var product in category.Products)
                                 {
                                     <div class="product-box">
@@ -180,8 +179,7 @@
                                     </div>
                                 }
                             </div>
-
-                            count++;
+                            //count++;
                             isTrue2 = false;
                         }
                     </div>

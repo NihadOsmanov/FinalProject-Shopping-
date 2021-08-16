@@ -19,9 +19,10 @@ namespace FinalProject.Controllers
             _dbContext = dbContext;
         }
 
+        #region Index
         public async Task<IActionResult> Index()
 
-        { 
+        {
             List<Product> products = await _dbContext.Products.Where(x => x.IsDelete == false).OrderByDescending(x => x.Id).ToListAsync();
             Shop shop = await _dbContext.Shops.Where(x => x.IsDelete == false).FirstOrDefaultAsync();
             List<Brand> brands = await _dbContext.Brands.ToListAsync();
@@ -34,6 +35,10 @@ namespace FinalProject.Controllers
             };
             return View(shopViewModel);
         }
+
+        #endregion
+
+        #region Detail
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null)
@@ -41,11 +46,11 @@ namespace FinalProject.Controllers
 
             ProductDetail productDetail = await _dbContext.ProductDetails.Include(x => x.Product).ThenInclude(x => x.ProductSizes).ThenInclude
                                                                                         (x => x.Size).FirstOrDefaultAsync(x => x.ProductId == id);
-              
+
             if (productDetail == null)
                 return NotFound();
 
-           
+
             Shop shop = await _dbContext.Shops.Where(x => x.IsDelete == false).FirstOrDefaultAsync();
 
             ShopDetailViewModel shopDetailViewModel = new ShopDetailViewModel()
@@ -56,6 +61,8 @@ namespace FinalProject.Controllers
             return View(shopDetailViewModel);
 
         }
+
+        #endregion
 
         #region Search
         public IActionResult Search(string search)

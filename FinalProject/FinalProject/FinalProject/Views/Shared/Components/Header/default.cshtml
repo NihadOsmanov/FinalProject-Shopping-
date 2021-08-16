@@ -19,7 +19,7 @@
                             <ul class="onhover-show-div">
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <li><a asp-controller="Profile" asp-action="Index">@User.Identity.Name</a></li>
+                                    <li><a asp-area="AdminPanel" asp-controller="Dashboard" asp-action="Index">@User.Identity.Name</a></li>
                                     
                                     <li><a asp-controller="Account" asp-action="Logout">logout</a></li>
 

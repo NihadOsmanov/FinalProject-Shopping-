@@ -24,5 +24,6 @@ namespace FinalProject.Models
         public IFormFile Photo { get; set; }
         public bool IsDelete { get; set; }
         public BlogDetail BlogDetail { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }

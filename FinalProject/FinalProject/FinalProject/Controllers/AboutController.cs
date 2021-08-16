@@ -19,6 +19,7 @@ namespace FinalProject.Controllers
             _dbContext = dbContext;
         }
 
+        #region Index
         public async Task<IActionResult> Index()
         {
             About about = await _dbContext.Abouts.FirstOrDefaultAsync();
@@ -33,5 +34,7 @@ namespace FinalProject.Controllers
             };
             return View(aboutView);
         }
+
+        #endregion
     }
 }

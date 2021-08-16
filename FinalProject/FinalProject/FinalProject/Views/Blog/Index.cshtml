@@ -20,7 +20,7 @@
                             <nav class="theme-breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href="./index.html">Home </a>
+                                        <a asp-controller="Home" asp-action="Index">Home </a>
                                     </li>
                                     <li class="breadcrumb-item active">Blog</li>
                                 </ol>
@@ -58,7 +58,7 @@
                                 </a>
                                 <ul class="post-social">
                                     <li>Posted By : @blog.Posted</li>
-                                    <li><i class="fa fa-comments"></i> 10 Comment</li>
+                                    <li><i class="fa fa-comments"></i> @blog.Comments.Count Comment</li>
                                 </ul>
                             </div>
                         </div>
@@ -73,83 +73,17 @@
                         <ul class="recent-blog">
                             @foreach (var blog in blogs)
                             {
-                            <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">
                                 <li>
                                     <div class="media">
+                                        <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">
                                         <img src="./img/Blog/@blog.Image" alt="" />
+                                        </a>
                                         <div class="media-body align-self-center">
                                             <h6>@blog.Date.ToString("dd MMMM yyyy")</h6>
                                         </div>
                                     </div>
                                 </li>
-                            </a>
-                                
                             }
-                        </ul>
-                    </div>
-                    <div class="theme-card">
-                        <h4>Popular Blog</h4>
-                        <ul class="popular-blog">
-                            <li>
-                                <div class="media">
-                                    <div class="blog-date">
-                                        <span>03 </span>
-                                        <span>May </span>
-                                    </div>
-                                    <div class="media-body align-self-center">
-                                        <h6>Injected humour the like</h6>
-                                    </div>
-                                </div>
-                                <p>
-                                    it look like readable English. Many desktop publishing
-                                    text.
-                                </p>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="blog-date">
-                                        <span>03 </span>
-                                        <span>May </span>
-                                    </div>
-                                    <div class="media-body align-self-center">
-                                        <h6>Injected humour the like</h6>
-                                    </div>
-                                </div>
-                                <p>
-                                    it look like readable English. Many desktop publishing
-                                    text.
-                                </p>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="blog-date">
-                                        <span>03 </span>
-                                        <span>May </span>
-                                    </div>
-                                    <div class="media-body align-self-center">
-                                        <h6>Injected humour the like</h6>
-                                    </div>
-                                </div>
-                                <p>
-                                    it look like readable English. Many desktop publishing
-                                    text.
-                                </p>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="blog-date">
-                                        <span>03 </span>
-                                        <span>May </span>
-                                    </div>
-                                    <div class="media-body align-self-center">
-                                        <h6>Injected humour the like</h6>
-                                    </div>
-                                </div>
-                                <p>
-                                    it look like readable English. Many desktop publishing
-                                    text.
-                                </p>
-                            </li>
                         </ul>
                     </div>
                 </div>

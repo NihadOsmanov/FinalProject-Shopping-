@@ -27,6 +27,7 @@ namespace FinalProject.Controllers
             _userManager = userManager;
         }
 
+        #region Index
         public async Task<IActionResult> Index()
         {
             Slider slider = await _dbContext.Sliders.FirstOrDefaultAsync();
@@ -46,6 +47,10 @@ namespace FinalProject.Controllers
             };
             return View(homeViewModel);
         }
+
+        #endregion
+
+        #region AddToBasket
         public async Task<IActionResult> AddToBasket(int? id)
         {
             if (id == null)
@@ -69,9 +74,9 @@ namespace FinalProject.Controllers
             }
 
             var existProduct = productsList.FirstOrDefault(x => x.Id == id);
-            if(existProduct == null)
+            if (existProduct == null)
             {
-                productsList.Add(new BasketViewModel { Id = product.Id });  
+                productsList.Add(new BasketViewModel { Id = product.Id });
             }
             else
             {
@@ -83,6 +88,10 @@ namespace FinalProject.Controllers
             return Json(productsList.Count);
 
         }
+
+        #endregion
+
+        #region Increase
         public async Task<IActionResult> Increase(int? id)
         {
             if (id == null)
@@ -131,6 +140,10 @@ namespace FinalProject.Controllers
 
             return PartialView("_cartBasketPartial", result);
         }
+
+        #endregion
+
+        #region Decrease
         public async Task<IActionResult> Decrease(int? id)
         {
             if (id == null)
@@ -186,6 +199,10 @@ namespace FinalProject.Controllers
 
             return PartialView("_cartBasketPartial", result);
         }
+
+        #endregion
+
+        #region Basket
         public IActionResult Basket()
         {
             var cookieBasket = Request.Cookies["basket"];
@@ -215,6 +232,10 @@ namespace FinalProject.Controllers
 
             return View(result);
         }
+
+        #endregion
+
+        #region Delete
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -243,6 +264,10 @@ namespace FinalProject.Controllers
 
             return RedirectToAction("Basket");
         }
+
+        #endregion
+
+        #region RemoveAll
         public IActionResult RemoveAll(int? id)
         {
             if (id == null)
@@ -264,7 +289,9 @@ namespace FinalProject.Controllers
             Response.Cookies.Append("basket", productJson);
             return RedirectToAction("Basket");
         }
-       
+
+        #endregion
+
         #region Search
         public IActionResult Search(string search)
         {

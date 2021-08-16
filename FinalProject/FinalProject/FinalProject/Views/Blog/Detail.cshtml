@@ -20,7 +20,7 @@
                             <nav class="theme-breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href="./index.html">Home </a>
+                                        <a asp-controller="Home" asp-action="Index">Home </a>
                                     </li>
                                     <li class="breadcrumb-item active">Blog Details</li>
                                 </ol>
@@ -44,7 +44,7 @@
                 </h3>
                 <ul class="post-social">
                     <li>Posted By : @commentViewModel.BlogDetail.Blog.Posted</li>
-                    <li><i class="fa fa-comments"></i> 10 Comment</li>
+                    <li><i class="fa fa-comments"></i> @commentViewModel.Comments.Count Comment</li>
                 </ul>
                 <p>
                     @Html.Raw(commentViewModel.BlogDetail.Description)
