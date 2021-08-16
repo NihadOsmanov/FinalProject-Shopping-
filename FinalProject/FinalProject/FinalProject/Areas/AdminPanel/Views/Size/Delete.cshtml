@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+    Size size = Model;
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card bg-dark text-white">
+        <div class="card d-flex flex-column bg-dark">
+            <div class="card-body">
+                <h4 class="card-title text-white">Size : @size.Name</h4>
+                <p class="text-danger">Do you want to Delete</p>
+            </div>
+            <div class="row " style="margin-left: 30px; padding-bottom: 15px">
+                <a class="btn btn-outline-secondary" asp-action="Index">Go back</a>
+                <form method="post">
+                    <button type="submit" class="btn btn-outline-danger ml-2">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

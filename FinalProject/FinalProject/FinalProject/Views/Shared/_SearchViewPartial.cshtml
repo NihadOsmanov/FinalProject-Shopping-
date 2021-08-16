@@ -1,0 +1,60 @@
+﻿@model List<Product>
+
+<div id="global-search" style="display:flex; flex-wrap: wrap;">
+    @foreach (var product in Model)
+    {
+    <li class="li" style="display: flex; flex-direction: column">
+        <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+            <img src="~/img/product/@product.Image" width="200"/>
+        </a>
+        <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+            @product.Name
+        </a>
+    </li>
+        @*<div class="item" style="padding:40px; width: 400px;">
+                <div class="card">
+                    <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+                        <img class="card-img-top"
+                             src="~/img/product/@product.Image"
+                             alt="#catwatch1"
+                             id="productImageFour1" />
+                    </a>
+                    <div class="cart-box cart-1">
+                        <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@product.Id">Add to Cart</a>
+                    </div>
+                    <div class="media-body">
+                        <div class="rating">
+                            <div class="br br-default br-readonly">
+                                <div class="br-units">
+                                    @for (int i = 0; i < product.Rate; i++)
+                                    {
+                                        <div class="br-unit"></div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <a href="./product.html">
+                            <h6>@product.Name</h6>
+                        </a>
+                        <span class="price-new">$@product.NewPice <span class="price-old"> $@product.OldPrice</span></span>
+                    </div>
+                </div>
+            </div>*@
+    }
+</div>
+@*<ul id="global-search">
+    @if (Model.Blogs != null && Model.Blogs.Count > 0)
+    {
+        <li class="global-search-title">Blog Result</li>
+
+        foreach (var blog in Model.Blogs)
+        {
+            <li class="li">
+                <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">
+                    @blog.Title
+                </a>
+            </li>
+        }
+    }
+</ul>*@

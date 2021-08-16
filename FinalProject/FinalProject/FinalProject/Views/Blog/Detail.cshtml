@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+    CommentViewModel commentViewModel = Model;
+}
+
+<!--Bredcrum start-->
+<section class="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="breadcrumb-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-title">
+                                <h2>Blog Details</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <nav class="theme-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="./index.html">Home </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Blog Details</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Bredcrumb end-->
+<!--Blog Detail start-->
+<section class="blog-detail-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 blog-detail">
+                <img src="~/img/Blog/@commentViewModel.BlogDetail.Blog.Image" alt="blog-1" />
+                <h3>
+                    @commentViewModel.BlogDetail.Blog.Title
+                </h3>
+                <ul class="post-social">
+                    <li>Posted By : @commentViewModel.BlogDetail.Blog.Posted</li>
+                    <li><i class="fa fa-comments"></i> 10 Comment</li>
+                </ul>
+                <p>
+                    @Html.Raw(commentViewModel.BlogDetail.Description)
+                </p>
+            </div>
+        </div>
+        <div class="row" id="comment-list">
+            @foreach (Comment comment in commentViewModel.Comments)
+            {
+                <div class="col-sm-12">
+                    <ul class="comment-section">
+                        <li>
+                            <div class="media">
+                                <img src="~/img/Blog/@comment.Blog.Image" alt="comment-1" />
+                                <div class="media-body">
+                                    <h6>
+                                        @comment.Name <span>( @comment.CreateTime.ToString("f") )</span>
+                                    </h6>
+                                    <p>
+                                        @comment.Message
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            }
+        </div>
+        <div class="row blog-contact">
+            <div class="col-sm-12">
+                <h2>LEAVE YOUR COMMENT</h2>
+                <form class="theme-form" method="post">
+                    <div class="form-row">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <div class="col-md-12">
+                                <label for="name">Name</label>
+                                <input type="text"
+                                       name="name"
+                                       placeholder="Enter Your Name"
+                                       required
+                                       class="form-control name" />
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email">Email</label>
+                                <input type="email"
+                                       name="email"
+                                       placeholder="Email"
+                                       required
+                                       class="form-control email" />
+                            </div>
+                        }
+                        <div class="col-md-12">
+                            <label for="exampleFormComment">Comment</label>
+                            <textarea id="exampleFormComment"
+                                      class="message"
+                                      placeholder="Write Your Comment"
+                                      rows="6"></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <button  id="reply-button" class="btn btn-solid reply-btn">
+                                Post Comment
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Blog Detail end-->
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

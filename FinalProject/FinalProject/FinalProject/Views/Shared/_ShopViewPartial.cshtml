@@ -1,0 +1,50 @@
+﻿
+@model List<Product>
+    <div class="product-wrapper-grid grid-view">
+        <div class="row" id="old-courses">
+            <div id="shop-product-search" style="display:flex; flex-wrap: wrap">
+                @foreach (var product in Model)
+                {
+                    <div class="col-grid-box col-lg-4">
+                        <div class="product-box" style="margin-right: 20px">
+                            <div class="ng-star-isnerted">
+                                <div class="img-wrapper">
+                                    <div class="lable-block"></div>
+                                    <div class="front">
+                                        <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+                                            <img class="card-img-top"
+                                                 src="~/img/product/@product.Image"
+                                                 alt="#catwatch1"
+                                                 id="productImageFour1"
+                                                 style="cursor: pointer" />
+                                        </a>
+                                    </div>
+                                    <div class="cart-box" id="cart">
+                                        <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@product.Id" style="cursor:pointer">Add to Cart</a>
+                                    </div>
+                                    <div class="product-detail"style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom:20px">
+                                        <div class="br br-default br-readonly">
+                                            <div class="br-units">
+                                                @for (int i = 0; i < product.Rate; i++)
+                                                {
+                                                    <div class="br-unit"></div>
+                                                }
+                                            </div>
+                                        </div>
+                                        <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+                                            <h6 style="cursor: pointer">@product.Name</h6>
+                                        </a>
+                                        <h4>
+                                            $@product.NewPice
+                                            <span class="money"> $@product.OldPrice</span>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>

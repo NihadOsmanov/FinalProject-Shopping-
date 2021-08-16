@@ -1,0 +1,22 @@
+﻿@model Comment
+
+
+<div class="col-sm-12">
+    <ul class="comment-section">
+        <li>
+            <div class="media">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="comment-1" />
+                <div class="media-body">
+                    <h6>
+                        @Model.Name <span>( @Model.CreateTime.ToString("f") )</span>
+                    </h6>
+                    <p>
+                        @Model.Message
+                    </p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+

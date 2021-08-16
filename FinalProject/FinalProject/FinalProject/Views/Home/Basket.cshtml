@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "Basket";
+    List<BasketViewModel> basketViewModel = Model;
+}
+<!--Bredcrum start-->
+<section class="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="breadcrumb-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-title">
+                                <h2>Cart</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <nav class="theme-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a asp-controller="Home" asp-action="Index">Home </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Cart</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Bredcrumb end-->
+<basket id="cart_basket">
+    <table class="table" style="text-align: center">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Count</th>
+                @*<th scope="col">Size</th>*@
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                double sum = 0;
+                foreach (var item in basketViewModel)
+                {
+
+                    <tr>
+                        <td style="vertical-align:middle"><img src="~/img/product/@item.Image" class="img-fluid" style="height:100px;"></td>
+                        <td style="vertical-align:middle">@item.ProductName</td>
+                        <td style="vertical-align:middle">@item.Count</td>
+                        @*<td style="vertical-align:middle">@item.Size</td>*@
+                        <td style="vertical-align:middle">$@Math.Round((double)(item.Price * item.Count))</td>
+                        <td style="vertical-align:middle; width: 600px;">
+                            <button class="btn btn-danger" id="decrease" value="@item.Id">-</button>
+                            <input hidden type="number" id="cart_amount" value="@item.Count" min="0" class="amount cart_amount" />
+                            <button class="btn btn-danger" id="increase" value="@item.Id">+</button>
+                            <a asp-controller="Home" asp-action="RemoveAll" asp-route-id="@item.Id" class="btn btn-danger">Remove</a>
+                        </td>
+                    </tr>
+                    { Math.Round((sum += (double)(item.Count) * (double)item.Price)); }
+                }
+            }
+        </tbody>
+    </table>
+    <h2 style="text-align: end; padding-right: 40px">
+        Total : $@sum
+    </h2>
+</basket>
+
+
+
+

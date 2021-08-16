@@ -1,0 +1,101 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!--Bredcrum start-->
+<section class="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="breadcrumb-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-title">
+                                <h2>Register</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <nav class="theme-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a asp-controller="Home" asp-action="Index">Home </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Register</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Bredcrumb end-->
+<!--Register start-->
+<section class="register-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Create Account</h3>
+                <div class="theme-card">
+                    <div asp-validation-summary="ModelOnly" style="margin-bottom: 30px"></div>
+                    <form method="post">
+
+                        <div class="form">
+                            <div class="form-row pt-3">
+                                <div class="col-md-6">
+                                    <label>Name</label><input placeholder="Name"
+                                                              asp-for="Name"
+                                                              class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Surname</label><input asp-for="Surname"
+                                                                 placeholder="Surname"
+                                                                 class="form-control" />
+                                    <span asp-validation-for="Surname" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row pt-3">
+                                <div class="col-md-6">
+                                    <label>email</label>
+                                    <input asp-for="Email"
+                                           placeholder="Email"
+                                           class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Password</label><input asp-for="Password"
+                                                                  placeholder="Enter your password"
+                                                                  required=""
+                                                                  class="form-control" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row pt-3">
+                                <div class="col-md-6">
+                                    <label>Username</label><input asp-for="UserName"
+                                                                  placeholder="Username"
+                                                                  class="form-control" />
+                                    <span asp-validation-for="UserName" class="text-danger  pb-3"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Confirm Password</label>
+                                    <input asp-for="ConfirmPassword" placeholder="Please confirm password" class="form-control" />
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger  pb-3"></span>
+                                </div>
+                            <button type="submit" class="btn btn-solid mt-2">Create Account</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Register end-->
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

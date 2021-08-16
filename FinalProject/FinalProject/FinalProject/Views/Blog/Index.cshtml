@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    List<Blog> blogs = Model;
+}
+
+<!--Bredcrum start-->
+<section class="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="breadcrumb-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-title">
+                                <h2>Blog</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <nav class="theme-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="./index.html">Home </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Blog</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Bredcrumb end-->
+<!--Blog start-->
+<section class="blog-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-8 col-md-7">
+                @foreach (var blog in blogs)
+                {
+                    <div class="row blog-detail">
+                        <div class="col-xl-6">
+                            <div class="blog-left">
+                                <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">
+                                    <img src="./img/Blog/@blog.Image" alt="blog-1" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="blog-right">
+                                <h6>@blog.Date.ToString("dd MMMM yyyy")</h6>
+                                <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">
+                                    <h4>
+                                        @blog.Title
+                                    </h4>
+                                </a>
+                                <ul class="post-social">
+                                    <li>Posted By : @blog.Posted</li>
+                                    <li><i class="fa fa-comments"></i> 10 Comment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-5">
+                <div class="blog-sidebar">
+                    <div class="theme-card">
+                        <h4>Recent Blog</h4>
+                        <ul class="recent-blog">
+                            @foreach (var blog in blogs)
+                            {
+                            <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">
+                                <li>
+                                    <div class="media">
+                                        <img src="./img/Blog/@blog.Image" alt="" />
+                                        <div class="media-body align-self-center">
+                                            <h6>@blog.Date.ToString("dd MMMM yyyy")</h6>
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                                
+                            }
+                        </ul>
+                    </div>
+                    <div class="theme-card">
+                        <h4>Popular Blog</h4>
+                        <ul class="popular-blog">
+                            <li>
+                                <div class="media">
+                                    <div class="blog-date">
+                                        <span>03 </span>
+                                        <span>May </span>
+                                    </div>
+                                    <div class="media-body align-self-center">
+                                        <h6>Injected humour the like</h6>
+                                    </div>
+                                </div>
+                                <p>
+                                    it look like readable English. Many desktop publishing
+                                    text.
+                                </p>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="blog-date">
+                                        <span>03 </span>
+                                        <span>May </span>
+                                    </div>
+                                    <div class="media-body align-self-center">
+                                        <h6>Injected humour the like</h6>
+                                    </div>
+                                </div>
+                                <p>
+                                    it look like readable English. Many desktop publishing
+                                    text.
+                                </p>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="blog-date">
+                                        <span>03 </span>
+                                        <span>May </span>
+                                    </div>
+                                    <div class="media-body align-self-center">
+                                        <h6>Injected humour the like</h6>
+                                    </div>
+                                </div>
+                                <p>
+                                    it look like readable English. Many desktop publishing
+                                    text.
+                                </p>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="blog-date">
+                                        <span>03 </span>
+                                        <span>May </span>
+                                    </div>
+                                    <div class="media-body align-self-center">
+                                        <h6>Injected humour the like</h6>
+                                    </div>
+                                </div>
+                                <p>
+                                    it look like readable English. Many desktop publishing
+                                    text.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Blog end-->

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fashion</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;400;900&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display&display=swap"
+          rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@300&display=swap"
+          rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+<body>
+    <!-- Header start -->
+    @await Component.InvokeAsync("Header")
+    <!-- Header end -->
+    <!--Main Start-->
+    <main>
+        <!--DarkMode and LightMode start-->
+        <section class="darkAndLightMode">
+            <div class="sidebar-btn dark-light-btn">
+                <div class="light">
+                    <div class="theme-layout-version">Dark</div>
+                </div>
+            </div>
+        </section>
+        <!--DarkMode and LightMode end-->
+
+        @RenderBody()
+    </main>
+    <!--Main End-->
+    <!--Footer start-->
+    @await Component.InvokeAsync("Footer");
+    <!--Footer end-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/FinalProject.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script>
+            var isAuthenticated = true;
+        </script>
+    }
+    else
+    {
+        <script>
+            var isAuthenticated = false;
+        </script>
+    }
+</body>
+</html>
+

@@ -1,0 +1,21 @@
+﻿
+@model List<Service>;
+<section class="service">
+    <div class="container">
+        <div class="row">
+            @foreach (var service in Model)
+            {
+                <div class="col-md-4 service-block">
+                    <div class="media">
+                        <i class="fas fa-shipping-fast"></i>
+                        <div class="media-body">
+                            <h4>@service.Title</h4>
+                            <p>@service.Description</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!--Bredcrum start-->
+<section class="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="breadcrumb-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-title">
+                                <h2>Profile</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <nav class="theme-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a asp-controller="Home" asp-action="Index">Home </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Profile</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Bredcrumb end-->
+<!--Profie start-->
+<section class="contact-page profile-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Personal Detail</h3>
+                <form class="theme-form ng-untouched ng-pristine ng-valid">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="name">First Name</label><input type="text"
+                                                                       id="name"
+                                                                       placeholder="Enter Your name"
+                                                                       required=""
+                                                                       class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">Last Name</label><input type="text"
+                                                                       id="last-name"
+                                                                       placeholder="Email"
+                                                                       required=""
+                                                                       class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="review">Phone number</label><input type="text"
+                                                                           id="review"
+                                                                           placeholder="Enter your number"
+                                                                           required=""
+                                                                           class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">Email</label><input type="text"
+                                                                   id="email"
+                                                                   placeholder="Email"
+                                                                   required=""
+                                                                   class="form-control" />
+                        </div>
+                        <div class="col-md-12">
+                            <label for="review">Write Your Message</label><textarea placeholder="Write Your Message"
+                                                                                    id="exampleFormControlTextarea1"
+                                                                                    rows="6"
+                                                                                    class="form-control"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Profie end-->
+<!--Shipping addres start-->
+<section class="contact-page shipping-adress">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Shipping Address</h3>
+                <form class="theme-form ng-untouched ng-pristine ng-valid">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="name">Flat/Plot</label><input type="text"
+                                                                      id="name"
+                                                                      placeholder="Company Name"
+                                                                      class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">Adress *</label><input type="text"
+                                                                      id="last-name"
+                                                                      placeholder="Adress"
+                                                                      required=""
+                                                                      class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="review">Zip Code *</label><input type="text"
+                                                                         id="review"
+                                                                         placeholder="Zip Code"
+                                                                         required=""
+                                                                         class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="review">Country *</label>
+                            <select size="1" class="form-control">
+                                <option value="Azerbaijan">Azerbaijan</option>
+                                <option value="Turkish">Turkish</option>
+                                <option value="Russia">Russia</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="review">City *</label><input type="text"
+                                                                     id="review"
+                                                                     placeholder="City"
+                                                                     required=""
+                                                                     class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="review">Region/State *</label><input type="text"
+                                                                             id="review"
+                                                                             placeholder="Region/State"
+                                                                             required=""
+                                                                             class="form-control" />
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-solid">
+                                Save Setting
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Shipping addres end-->

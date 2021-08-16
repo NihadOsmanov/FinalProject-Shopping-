@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    List<Faq> faqs = Model;
+}
+
+<!--Breadcrum start-->
+<section class="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="breadcrumb-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-title">
+                                <h2>Faqs</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <nav class="theme-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="./index.html">Home </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Faqs</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Breadcrumb end-->
+<!--Faq start-->
+<section class="faq">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="faq-list">
+                    @foreach (var faq in faqs)
+                    {
+                        <li>
+                            <h4 class="faq-heading">
+                                @faq.Title
+                            </h4>
+                            <p class="read faq-text">
+                                @faq.Description
+                            </p>
+                        </li>
+
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Faq end-->

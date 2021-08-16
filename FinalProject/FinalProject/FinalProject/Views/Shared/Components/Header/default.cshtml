@@ -1,0 +1,141 @@
+﻿@model Layout;
+
+<header class="sticky">
+    <div class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="header-contact">
+                        <ul>
+                            <li>Welcome to Our store Fashion</li>
+                            <li><i class="fa fa-phone"></i>Call Us: 123 - 456 - 7890</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-right">
+                    <ul class="header-dropdown">
+                        <li class="mobile-account">
+                            <i class="fa fa-user"></i>My Account
+                            <ul class="onhover-show-div">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a asp-controller="Profile" asp-action="Index">@User.Identity.Name</a></li>
+                                    
+                                    <li><a asp-controller="Account" asp-action="Logout">logout</a></li>
+
+                                }
+                                else
+                                {
+                                    <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                                    <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                                }
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main-menu">
+                    <div class="menu-left">
+                        <div class="brand-logo">
+                            <a asp-controller="Home" asp-action="Index" id="headerLogo">
+                                <img src="~/img/@Model.FirstLogo"
+                                     width="130"
+                                     class="img-fluid"
+                                     alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-right pull-right">
+                        <div class="main-navbar">
+                            <div class="main-nav">
+                                <ul class="nav-menu">
+                                    <li class="ng-star-inserted">
+                                        <a asp-controller="Shop" asp-action="Index" class="nav-link ng-star-inserted">shop</a>
+                                    </li>
+                                    <li class="ng-star-inserted">
+                                        <a asp-controller="Blog" asp-action="Index" class="nav-link ng-star-inserted">blogs</a>
+                                    </li>
+                                    <li class="ng-star-inserted">
+                                        <a asp-controller="About" asp-action="Index" class="nav-link ng-star-inserted">About us</a>
+                                    </li>
+                                    <li class="ng-star-inserted">
+                                        <a asp-controller="Contact" asp-action="Index"
+                                           class="nav-link ng-star-inserted">Contact</a>
+                                    </li>
+                                    <li class="ng-star-inserted">
+                                        <a asp-controller="Faq" asp-action="Index" class="nav-link ng-star-inserted">Faqs</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="icon-nav">
+                            <ul>
+                                <li id="search-widgets" class="onhover-div">
+                                    <i class="fa fa-search"></i>
+                                </li>
+
+                                <li id="bag-widgets" class="onhover-div">
+                                    <a asp-controller="Home" asp-action="Basket">
+                                        <i class="fa fa-shopping-bag"></i>
+                                    </a>
+                                    <sup class="rounded-circle">@ViewBag.BasketCount</sup>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="search-overlay" id="search-overlay">
+                            <div class="div-overlay">
+                                <span class="closebtn">x</span>
+                                <div class="overlay-content">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <form id="search-form">
+                                                    <div class="form-group">
+                                                        <input type="text"
+                                                               id="search-home-input"
+                                                               placeholder="Search a Product"
+                                                               class="form-control" />
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="home-search">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="section"></div>
+        <div class="section"></div>
+
+        <ul class="toggle">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="sidebar">
+            <ul class="menu">
+                <li><a asp-controller="Shop" asp-action="Index">Shop</a></li>
+                <li><a asp-controller="Product" asp-action="Index">Products</a></li>
+                <li><a asp-controller="Blog" asp-action="Index">Blogs</a></li>
+                <li><a asp-controller="About" asp-action="Index">About Us</a></li>
+                <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                <li><a asp-controller="Faq" asp-action="Index">Faqs</a></li>
+            </ul>
+        </div>
+    </div>
+</header>

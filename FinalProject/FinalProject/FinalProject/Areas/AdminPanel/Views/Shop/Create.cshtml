@@ -1,0 +1,86 @@
+﻿@model Product;
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body bg-dark font-weight-bold text-white">
+                <h4 class="card-title text-white font-italic">Create Products</h4>
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Photo">Image</label>
+                        <input asp-for="Photo" class="form-control" placeholder="Image" accept="*/image">
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NewPice"></label>
+                        <input asp-for="NewPice" class="form-control" placeholder="NewPice">
+                        <span asp-validation-for="NewPice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OldPrice"></label>
+                        <input asp-for="OldPrice" class="form-control" placeholder="OldPrice">
+                        <span asp-validation-for="OldPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Rate"></label>
+                        <input asp-for="Rate" class="form-control" placeholder="Rate">
+                        <span asp-validation-for="Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.ProductDetail.Detail"></label>
+                        <input asp-for="@Model.ProductDetail.Detail" class="form-control" placeholder="Detail">
+                        <span asp-validation-for="@Model.ProductDetail.Detail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.ProductDetail.Febric"></label>
+                        <input asp-for="@Model.ProductDetail.Febric" class="form-control" placeholder="Febric">
+                        <span asp-validation-for="@Model.ProductDetail.Febric" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.ProductDetail.Color"></label>
+                        <input asp-for="@Model.ProductDetail.Color" class="form-control" placeholder="Color">
+                        <span asp-validation-for="@Model.ProductDetail.Color" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.ProductDetail.Material"></label>
+                        <input asp-for="@Model.ProductDetail.Material" class="form-control" placeholder="Material">
+                        <span asp-validation-for="@Model.ProductDetail.Material" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" id="Category">
+                        <label>Select Category</label>
+                        <select class="custom-select" name="CategoryId">
+                            @foreach (Category category in ViewBag.Categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" id="Sizes">
+                        <label>Select Size</label>
+                        <select multiple class="custom-select" name="SizesId">
+                            @foreach (Size size in ViewBag.Sizes)
+                            {
+                                <option value="@size.Id">@size.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-outline-success mr-2">Create</button>
+                    <a asp-action="Index" class="btn btn-outline-warning">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+}

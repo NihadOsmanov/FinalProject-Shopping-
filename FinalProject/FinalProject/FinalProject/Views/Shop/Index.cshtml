@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    ShopViewModel shopViewModel = Model;
+}
+
+<!--Bredcrum start-->
+<section class="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="breadcrumb-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-title">
+                                <h2>Collection</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <nav class="theme-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a asp-controller="Home" asp-action="Index">Home </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Collection</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Bredcrumb end-->
+<!--Shop Content start-->
+<section class="shop">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="collection-filter" id="col-filter">
+                    <div class="collection-filter-block">
+                        <div class="collection-mobile-back">
+                            <span class="filter-back">
+                                <i class="fas fa-angle-left"></i>back
+                            </span>
+                        </div>
+                        <div class="collection-collapse-block open">
+                            <h3 class="collapse-block-title">brand</h3>
+                            <div class="collection-collapse-block-content">
+                                <div class="collection-brand-filter">
+                                    @{
+                                        foreach (var item in shopViewModel.Brands)
+                                        {
+                                            <div class="custom-control custom-checkbox collection-filter-checkbox">
+                                                <a asp-controller="Shop" asp-action="Filtering" asp-route-id="@item.Id">
+                                                    <input type="checkbox"
+                                                           class="custom-control-input random"
+                                                           value="@item.Name"
+                                                           id="@item.Id" />
+                                                    <label class="custom-control-label" for="titan">@item.Name</label>
+
+                                                </a>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collection-collapse-block open">
+                            <h3 class="collapse-block-title">Size</h3>
+                            <div class="collection-collapse-block-content">
+                                <div class="collection-brand-filter">
+                                    <div class="
+                            custom-control custom-checkbox
+                            collection-filter-checkbox
+                          ">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               value="S"
+                                               id="S" />
+                                        <label class="custom-control-label" for="titan">S</label>
+                                    </div>
+                                    <div class="
+                            custom-control custom-checkbox
+                            collection-filter-checkbox
+                          ">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               value="M"
+                                               id="M" />
+                                        <label class="custom-control-label" for="titan">M</label>
+                                    </div>
+                                    <div class="
+                            custom-control custom-checkbox
+                            collection-filter-checkbox
+                          ">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               value="L"
+                                               id="L" />
+                                        <label class="custom-control-label" for="titan">L</label>
+                                    </div>
+                                    <div class="
+                            custom-control custom-checkbox
+                            collection-filter-checkbox
+                          ">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               value="XS"
+                                               id="XS" />
+                                        <label class="custom-control-label" for="titan">XS</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collection-collapse-block open">
+                            <h3 class="collapse-block-title">Price</h3>
+                            <div class="collection-collapse-block-content">
+                                <div class="collection-brand-filter">
+                                    <div class="rSlider">
+                                        <span class="slide"></span>
+                                        <input id="range" type="range" min="0" max="1000" />
+                                    </div>
+                                    <span id="demo" style="font-weight: 600"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shop-reclam">
+                            <a>
+                                <img src="~/img/shop/shop-reclam-2.jpg" alt="reclam" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col collection-content">
+                <div class="page-main-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="top-banner-wrapper">
+                                <div class="top-banner-wrapper">
+                                    <a>
+                                        <img src="~/img/shop/@shopViewModel.Shop.Image"
+                                             class="img-fluid"
+                                             alt="shop" />
+                                    </a>
+                                </div>
+                                <div class="top-banner-content small-section">
+                                    <h4>@shopViewModel.Shop.Title</h4>
+                                    <h5>
+                                        @shopViewModel.Shop.Subtitle
+                                    </h5>
+                                    <p>
+                                        @shopViewModel.Shop.Description
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="collection-product-wrapper">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="filter-main-btn">
+                                            <span class="filter-btn btn btn-theme">
+                                                <i aria-hidden="true" class="fa fa-filter"></i>
+                                                Filter
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-top-filter">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="product-filter-content">
+                                                <div class="search-count">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <input type="search"
+                                                                   class="form-control"
+                                                                   id="shopSearch"
+                                                                   placeholder="search..." />
+                                                        </div>
+                                                    </form>
+                                                    <i class="fas fa-search"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="new-shop">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-wrapper-grid grid-view">
+                                    <div class="row" id="old-courses">
+                                        @foreach (var product in shopViewModel.Products)
+                                        {
+                                            <div class="col-grid-box col-lg-4">
+                                                <div class="product-box">
+                                                    <div class="ng-star-isnerted">
+                                                        <div class="img-wrapper">
+                                                            <div class="lable-block"></div>
+                                                            <div class="front">
+                                                                <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+                                                                    <img class="card-img-top"
+                                                                         src="~/img/product/@product.Image"
+                                                                         alt="#catwatch1"
+                                                                         id="productImageFour1"
+                                                                         style="cursor: pointer" />
+                                                                </a>
+                                                            </div>
+                                                            <div class="cart-box" id="cart">
+                                                                <button class="btn-add-cart" id="AddBasket">Add to Cart</button>
+                                                                <input hidden id="ProductId" value="@product.Id" />
+                                                            </div>
+                                                            <div class="product-detail">
+                                                                <div class="br br-default br-readonly">
+                                                                    <div class="br-units">
+                                                                        @for (int i = 0; i < product.Rate; i++)
+                                                                        {
+                                                                            <div class="br-unit"></div>
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                                <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+                                                                    <h6 style="cursor: pointer">@product.Name</h6>
+                                                                </a>
+                                                                <h4>
+                                                                    $@product.NewPice
+                                                                    <span class="money"> $@product.OldPrice</span>
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Shop Content end-->
+
+<script>
+
+</script>

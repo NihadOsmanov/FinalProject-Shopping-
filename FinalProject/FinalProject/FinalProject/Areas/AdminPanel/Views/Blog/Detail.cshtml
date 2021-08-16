@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+    BlogDetail blogDetail = Model;
+}
+
+<div class="col-md-12 grid-margin stretch-card bg-dark text-white">
+    <div class="card d-flex flex-column bg-dark">
+        <div class="card-body">
+            <h4>Image</h4> <img src="~/img/Blog/@blogDetail.Blog.Image" style="width: 200px; height:200px; object-fit: cover" />
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Author</h4>  <p class="font-italic"> @blogDetail.Blog.Posted</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Title</h4>  <p class="font-italic"> @blogDetail.Blog.Title</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">DateTime</h4>  <p class="font-italic"> @blogDetail.Blog.Date.ToString("dd MMMM yyyy")</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Description</h4>  <p class="font-italic"> @Html.Raw(blogDetail.Description)</p>
+        </div>
+        <div class="card-body">
+            <a asp-action="Index" class="btn btn-outline-secondary" style="margin-left: 10px">Go Back</a>
+        </div>
+    </div>
+</div>
+
+

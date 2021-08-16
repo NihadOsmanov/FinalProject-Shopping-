@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+    Product product = Model;
+}
+
+<div class="col-md-12 grid-margin stretch-card bg-dark text-white">
+    <div class="card d-flex flex-column bg-dark">
+        <div class="card-body">
+            <img src="~/img/product/@product.Image" style="width: 200px; height: 200px; object-fit: cover;" />
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Product Name</h4> <p class="font-italic">@product.Name</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">OldPrice</h4> <p class="font-italic"> @product.OldPrice</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">NewPrice</h4> <p class="font-italic"> @product.NewPice</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Rate</h4> <p class="font-italic"> @product.Rate</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Detail</h4>   <p class="font-italic">@product.ProductDetail.Detail</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Febric</h4>   <p class="font-italic">@product.ProductDetail.Febric</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Color</h4>   <p class="font-italic">@product.ProductDetail.Color</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Material</h4>   <p class="font-italic">@product.ProductDetail.Material</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Category</h4>   <p class="font-italic">@product.Category.Name</p>
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Size</h4>
+            @foreach (var size in product.ProductSizes)
+            {
+                <p class="font-italic">@size.Size.Name</p>
+            }
+        </div>
+        <div class="card-body">
+            <a asp-action="Index" class="btn btn-outline-secondary" style="margin-left: 5px; width:130px">Go Back</a>
+        </div>
+    </div>
+</div>

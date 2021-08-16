@@ -1,0 +1,202 @@
+﻿
+@model PayLayViewModel;
+
+<section class="subscriber">
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="subscriber-content">
+                    <h4>KNOW IT ALL FIRST!</h4>
+                    <p>
+                        Never Miss Anything From Multikart By Signing Up To Our
+                        Newsletter.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form>
+                    <div class="form-group">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <input type="email"
+                                   class="form-control"
+                                   id="inp-subs"
+                                   placeholder="Enter email" required />
+                        }
+                        <button type="button" id="btn-subs" class="btn btn-solid btn-subscriber">
+                            Subscribe
+                        </button>
+                    </div>
+                </form>
+                <p><span id="span-subs"></span></p>
+            </div>
+        </div>
+    </div>
+    <hr style="margin: 0px" />
+</section>
+<!--Subscriber end-->
+<!--Footer start-->
+<section class="footer">
+    <div class="container">
+        <div class="row footer-theme">
+            <div class="col-lg-4 col-md-6">
+                <div class="footer-content">
+                    <img src="~/img/@Model.Layout.SecondLogo"
+                         width="130"
+                         alt="logo" />
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam,
+                </p>
+                <div class="footer-social">
+                    <ul>
+                        <li>
+                            <a href="https://www.facebook.com/">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://accounts.google.com/">
+                                <i class="fab fa-google-plus-g"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com/">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://rss.com/"><i class="fas fa-rss"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col offset-xl-1">
+                <div class="sub-title">
+                    <div class="footer-title">
+                        <h4>Categories</h4>
+                    </div>
+                    <div class="footer-content">
+                        <ul>
+                            <li><a href="./shop.html">Women Fashion</a></li>
+                            <li><a>Men Fashion</a></li>
+                            <li><a>Kids Fashion</a></li>
+                            <li><a>Featured</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="sub-title">
+                    <div class="footer-title">
+                        <h4>WHY WE CHOOSE</h4>
+                    </div>
+                    <div class="footer-content">
+                        <ul>
+                            <li><a>Shipping & Return</a></li>
+                            <li><a>Secure Shopping</a></li>
+                            <li><a>Gallary</a></li>
+                            <li><a>Affiliates</a></li>
+                            <li><a href="./contact.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="sub-title-contact">
+                    <div class="footer-title">
+                        <h4>STORE INFORMATION</h4>
+                    </div>
+                    <div class="footer-content">
+                        <ul class="contact-list">
+                            <li>
+                                <a>
+                                    <i class="fas fa-map-marker-alt"></i>Multikart Demo
+                                    Store, Demo Store India 345-659
+                                </a>
+                            </li>
+                            <li>
+                                <a><i class="fas fa-phone-alt"></i>Call Us: 123-456-7898</a>
+                            </li>
+                            <li>
+                                <a>
+                                    <i class="far fa-envelope-open"></i>Email Us:
+                                    Support@Fiot.Com
+                                </a>
+                            </li>
+                            <li>
+                                <a><i class="fas fa-fax"></i>Fax: 123456</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Footer end-->
+<!--Sub Footer start-->
+<section class="sub-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-md-6 col-sm-12">
+                <div class="footer-end">
+                    <p>
+                        <i class="far fa-copyright"></i> 2021 theme forest powered by
+                        pixelstrap
+                    </p>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6 col-sm-12">
+                <div class="payment-card">
+                    <ul>
+                        <li>
+                            <a><img src="~/img/@Model.Payments.VisaImage" alt="visa" /></a>
+                        </li>
+                        <li>
+                            <a><img src="~/img/@Model.Payments.MastercardImage" alt="mastercard" /></a>
+                        </li>
+                        <li>
+                            <a><img src="~/img/@Model.Payments.PaypalImage" alt="paypal" /></a>
+                        </li>
+                        <li>
+                            <a><img src="~/img/@Model.Payments.AmericanExpressImage" alt="express" /></a>
+                        </li>
+                        <li>
+                            <a><img src="~/img/@Model.Payments.DiscoverImage" alt="discover" /></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Sub Footer end-->
+<!--BackToTop start-->
+<section class="backToTop">
+    <a href="#" class="to-top">
+        <i class="fas fa-angle-double-up"></i>
+    </a>
+</section>
+<!--BackToTop end-->
+<!--Mobile start-->
+<section class="mobile">
+    <div class="mobile-fix">
+        <ul>
+            <li>
+                <a><i class="fas fa-search"></i></a>
+            </li>
+            <li>
+                <a href="./login.html"><i class="far fa-user"></i></a>
+            </li>
+        </ul>
+    </div>
+</section>

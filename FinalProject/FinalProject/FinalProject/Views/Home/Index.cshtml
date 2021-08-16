@@ -1,0 +1,248 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    HomeViewModel homeViewModel = Model;
+    int count = 0;
+    bool isTrue = true;
+    bool isTrue2 = true;
+}
+
+<!--Slider start-->
+<section class="home-slider">
+    <div class="slider">
+        <div class="slider-item">
+            <img src="~/img/@homeViewModel.Slider.Image" alt="slider1" />
+            <div class="slider-item-caption">
+                <h4>@homeViewModel.Slider.Description</h4>
+                <h1>@homeViewModel.Slider.Title</h1>
+                <a asp-controller="Shop" asp-action="Index" class="btn btn-solid">shop now</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Slider end-->
+<!--Top collection start-->
+<section class="top-collection">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="title">
+                    <h4>Special offer</h4>
+                    <h2 class="title-inner">Top Collection</h2>
+                    <div class="line"><span></span></div>
+                    <div class="col-lg-6 offset-lg-3">
+                        <div class="product-para">
+                            <p class="text-center">
+                                Lorem Ipsum is simply dummy text of the printing and
+                                typesetting industry, Lorem Ipsum has been the industry's
+                                standard dummy text ever since the 1500s
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="owl-carousel owl-theme owl-trending">
+                    @foreach (var product in homeViewModel.Products)
+                    {
+                        <div class="item">
+                            <div class="card">
+                                <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+                                    <img class="card-img-top"
+                                         src="~/img/product/@product.Image"
+                                         alt="#catwatch1"
+                                         id="productImageFour1" />
+                                </a>
+                                <div class="cart-box cart-1">
+                                    <button class="btn-add-cart" id="AddBasket">Add to Cart</button>
+                                    <input hidden id="ProductId" value="@product.Id" />
+                                </div>
+                                <div class="media-body">
+                                    <div class="rating">
+                                        <div class="br br-default br-readonly">
+                                            <div class="br-units">
+                                                @for (int i = 0; i < product.Rate; i++)
+                                                {
+                                                    <div class="br-unit"></div>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="./product.html">
+                                        <h6>@product.Name</h6>
+                                    </a>
+                                    <span class="price-new">$@product.NewPice <span class="price-old"> $@product.OldPrice</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Top collection end-->
+<!--Parallax start-->
+<section class="p-0 parallax">
+    <div class="
+            full-banner
+            parallax-banner1 parallax-wrapper
+            text-center
+            p-left
+          "
+         style="background-image: url(/img/@homeViewModel.Parallax.Image)">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="banner-contain">
+                        <h2>@homeViewModel.Parallax.FashionTime</h2>
+                        <h3>@homeViewModel.Parallax.Title</h3>
+                        <h4>@homeViewModel.Parallax.Description</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Parallax end-->
+<!--Special Products start-->
+<div class="title1 section-t-space">
+    <h4>exclusive products</h4>
+    <h2 class="title-inner1">special products</h2>
+    <div class="line"><span></span></div>
+</div>
+<section class="special-products">
+    <div class="container">
+        <div class="row">
+            <div class="col theme-tab">
+                <div class="tabs-title">
+                    @*<nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+                            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+                    </div>*@
+                    <nav>
+                        <ul class="nav nav-tabs" id="nav-tab" role="tablist" style="justify-content: center">
+                            @foreach (var category in homeViewModel.Categories)
+                            {
+                                <a class="nav-link @(isTrue?"active":"")" style="color: black; cursor: pointer" id="nav-@category.Id-tab" data-bs-toggle="tab" data-bs-target="#nav-@category.Id" role="tab" aria-controls="nav-@category.Id">@category.Name.ToLower()</a>
+                                isTrue = false;
+                            }
+
+                        </ul>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        @foreach (var category in homeViewModel.Categories)
+                        {
+                            <div class="row no-slider fade @(isTrue2?"active show":"")" style="display: flex" id="nav-@category.Id" role="tabpanel" aria-labelledby="nav-@category.Id-tab">
+                                @foreach (var product in category.Products)
+                                {
+                                    <div class="product-box">
+                                        <div class="item">
+                                            <div class="card" data-id="@category.Name.ToLower()">
+                                                <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+                                                    <img class="card-img-top"
+                                                         src="~/img/product/@product.Image"
+                                                         alt="#catwatch1"
+                                                         id="productImage23" />
+                                                </a>
+                                                <div class="cart-box">
+                                                    <button class="btn-add-cart" id="AddBasket">Add to Cart</button>
+                                                    <input hidden id="ProductId" value="@product.Id" />
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="rating">
+                                                        <div class="br br-default br-readonly">
+                                                            <div class="br-units">
+                                                                @for (int i = 0; i < product.Rate; i++)
+                                                                {
+                                                                    <div class="br-unit"></div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+                                                        <h6>@product.Name</h6>
+                                                    </a>
+                                                    <span class="price-new">
+                                                        $@product.NewPice
+                                                        <span class="price-old"> $@product.OldPrice</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            count++;
+                            isTrue2 = false;
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Special Products end-->
+<!--Service start-->
+@await Component.InvokeAsync("Service");
+<!--Service end-->
+<!--Recent Story start-->
+<section class="recent-story">
+    <div class="container">
+        <div class="title">
+            <h2 class="title-inner">Recent Story</h2>
+            <div class="line"><span></span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme owl-recent">
+                    @await Component.InvokeAsync("Blog");
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Recent Story end-->
+<!--B-sapce start-->
+<section class="space">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme owl-space">
+                    @foreach (var space in homeViewModel.Spaces)
+                    {
+                        <div class="item">
+                            <h4><img src="~/img/@space.Image" alt="logo1" /></h4>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--B-sapce end-->
+@*<script>
+        $(".categoryItem").click(function () {
+            if (this.attr('id') === $(".product-box").attr("id")){
+                $(".product-box").style.display = "flex";
+            }
+        })
+
+    </script>*@
+<script>
+    //$(".categoryItem").click(function () {
+    //    if (this.attr('id') === $(".product-box").attr("id")) {
+    //        $(".product-box").style.display = "flex";
+    //    }
+    //})
+
+</script>

@@ -1,0 +1,94 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!--Bredcrum start-->
+<section class="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="breadcrumb-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-title">
+                                <h2>Login</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <nav class="theme-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a asp-controller="Home" asp-action="Index">Home </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Login</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Bredcrumb end-->
+<!--Login start-->
+<section class="login-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 left-login">
+                <h3>Login</h3>
+                <div class="theme-card">
+                    <div asp-validation-summary="ModelOnly" style="margin-bottom: 30px" class="text-danger"></div>
+                    <form method="post">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input asp-for="Username"
+                                   class="form-control"
+                                   placeholder="Username" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input asp-for="Password"
+                                   class="form-control"
+                                   placeholder="Password" />
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                       style="margin-left: 0rem"
+                                       asp-for="RememberMe" />
+                                <label class="form-check-label" for="exampleCheck1">RememberMe</label>
+                                <span asp-validation-for="RememberMe" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <button class="btn btn-solid">Login</button>
+                        <div class="mt-4 font-weight-light pt-30">
+                            <a class="text-primary" asp-controller="Account" asp-action="ForgotPassword">Forgot your password?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 right-login">
+                <h3>New Customer</h3>
+                <div class="theme-card">
+                    <h6>Create A Account</h6>
+                    <p>
+                        Sign up for a free account at our store. Registration is quick
+                        and easy. It allows you to be able to order from our shop. To
+                        start shopping click register.
+                    </p>
+                    <a asp-controller="Account" asp-action="Register"><button class="btn btn-solid">Create An Account</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Login end-->
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

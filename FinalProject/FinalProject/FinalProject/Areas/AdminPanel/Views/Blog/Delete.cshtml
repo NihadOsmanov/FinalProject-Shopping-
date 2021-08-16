@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+    BlogDetail blogDetail = Model;
+}
+
+<div class="col-md-12 grid-margin stretch-card bg-dark text-white">
+    <div class="card d-flex flex-column bg-dark">
+        <div class="card-body">
+            <img src="~/img/Blog/@blogDetail.Blog.Image" style="width: 200px !important; height: 200px !important; object-fit: cover !important" />
+        </div>
+        <div class="card-body">
+            <h4 style="font-family: sans-serif; font-size: 23px">Blog Title</h4>  @blogDetail.Blog.Title
+        </div>
+        <div class="card-body">
+            <h4 class="card-text" style="font-family: Montserrat, sans-serif;">Do you want to delete?</h4>
+        </div>
+        <div class="row" style="margin-left: 30px; padding-bottom: 15px">
+            <form method="post">
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+            </form>
+            <a asp-action="Index" class="btn btn-outline-warning" style="margin-left: 10px">Go Back</a>
+        </div>
+    </div>
+</div>
