@@ -41,7 +41,7 @@ namespace FinalProject.Controllers
 
             ProductDetail productDetail = await _dbContext.ProductDetails.Include(x => x.Product).ThenInclude(x => x.ProductSizes).ThenInclude
                                                                                         (x => x.Size).FirstOrDefaultAsync(x => x.ProductId == id);
-
+              
             if (productDetail == null)
                 return NotFound();
 
