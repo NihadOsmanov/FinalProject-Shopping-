@@ -109,7 +109,7 @@
                         <h4>
                             <del class="ng-star-inserted">$@shopDetailViewModel.ProductDetail.Product.Price</del>
                         </h4>
-                        <h3>$@((Convert.ToDouble(shopDetailViewModel.ProductDetail.Product.Price) * shopDetailViewModel.ProductDetail.Product.Discount) /100)</h3>
+                        <h3>$@(Math.Round(Convert.ToDouble(shopDetailViewModel.ProductDetail.Product.Price) - (Convert.ToDouble(shopDetailViewModel.ProductDetail.Product.Price) * shopDetailViewModel.ProductDetail.Product.Discount) /100))</h3>
                         <div class="product-description border-product">
                             <h6 class="product-title size-text ng-star-inserted">
                                 select size

@@ -70,7 +70,7 @@
                                     <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
                                         <h6>@product.Name</h6>
                                     </a>
-                                    <span class="price-new">$@((Convert.ToDouble(product.Price) * product.Discount)/100) <span class="price-old"> $@product.Price</span></span>
+                                    <span class="price-new">$@(Math.Round(Convert.ToDouble(product.Price) - (Convert.ToDouble(product.Price) * product.Discount)/100)) <span class="price-old"> $@product.Price</span></span>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                                                         <h6>@product.Name</h6>
                                                     </a>
                                                     <span class="price-new">
-                                                        @((Convert.ToDouble(product.Price) * product.Discount)/100)
+                                                        @(Math.Round(Convert.ToDouble(product.Price) - (Convert.ToDouble(product.Price) * product.Discount)/100))
                                                         <span class="price-old"> $@product.Price</span>
                                                     </span>
                                                 </div>

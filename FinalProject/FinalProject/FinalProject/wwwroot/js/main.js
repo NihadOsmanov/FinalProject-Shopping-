@@ -126,24 +126,7 @@ $(document).ready(function () {
   });
 });
 
-// $(".color-variant li").on("click", function () {
-//   $(this).parent().parent().prev().prev().children()[0].children()[0].src = $(this).next().val();
-//$(document).on("click", "#tabs li a", function (e) {
-//    e.preventDefault();
-//    let category = $(this).attr("data-id");
-//    let products = $(".card");
-
-//    products.each(function () {
-//        if (category == $(this).attr("data-id")) {
-//            $(this).parent().fadeIn();
-//        } else {
-//            $(this).parent().hide();
-//        }
-//    });
-//});
-
 $("#ngb-tab-3").on("click", function () {
-    console.log("ok1")
     document.getElementById("ngb-tab-3-panel").style.display = "block";
     document.getElementById("ngb-tab-4-panel").style.display = "none";
     document.getElementById("ngb-tab-3").style.color = "#ec6356";
@@ -152,8 +135,6 @@ $("#ngb-tab-3").on("click", function () {
     document.getElementById("ngb-tab-4").style.borderBottom = "2px solid #dee2e6";
 });
 $("#ngb-tab-4").on("click", function () {
-    console.log("ok2")
-
     document.getElementById("ngb-tab-3-panel").style.display = "none";
     document.getElementById("ngb-tab-4-panel").style.display = "block";
     document.getElementById("ngb-tab-4").style.color = "#ec6356";

@@ -215,7 +215,6 @@ namespace FinalProject.Controllers
                 basketViewModel.Discount = dbProduct.Discount;
                 basketViewModel.Image = dbProduct.Image;
                 basketViewModel.ProductName = dbProduct.Name;
-
                 result.Add(basketViewModel);
             }
 

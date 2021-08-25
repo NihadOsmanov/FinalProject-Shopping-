@@ -187,7 +187,7 @@
                                                                     <h6 style="cursor: pointer">@product.Name</h6>
                                                                 </a>
                                                                 <h4>
-                                                                    $@((Convert.ToDouble(product.Price) * product.Discount)/100)
+                                                                    $@(Math.Round(Convert.ToDouble(product.Price) - (Convert.ToDouble(product.Price) * product.Discount)/100))
                                                                     <span class="money"> $@product.Price</span>
                                                                 </h4>
                                                             </div>

@@ -120,7 +120,8 @@ namespace FinalProject.Controllers
 
             if (!string.IsNullOrEmpty(price))
             {
-                return PartialView("_ShopViewPartial", products.Where(x => Convert.ToDouble(x.Price) <= Convert.ToDouble(price)).ToList());
+                var product = products.Where(x => Convert.ToDouble(x.Price) - ((Convert.ToDouble(x.Price) * x.Discount / 100)) <= Convert.ToDouble(price)).ToList();
+                return PartialView("_ShopViewPartial", product);
             }
 
             return PartialView("_ShopViewPartial", products);
