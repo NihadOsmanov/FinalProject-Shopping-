@@ -1,6 +1,6 @@
 ﻿using FinalProject.DataAccesLayer;
 using FinalProject.Models;
-using Layihe.Areas.AdminPanel.Utils;
+using FinalProject.Areas.AdminPanel.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

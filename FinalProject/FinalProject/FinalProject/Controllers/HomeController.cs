@@ -32,7 +32,7 @@ namespace FinalProject.Controllers
         {
             Slider slider = await _dbContext.Sliders.FirstOrDefaultAsync();
             List<Product> products = await _dbContext.Products.Where(x => x.IsDelete == false).Include(x => x.Category).ToListAsync();
-            List<Category> categories = await _dbContext.Categories.ToListAsync();
+            List<Category> categories = await _dbContext.Categories.Include(x => x.Products.Where(x => x.IsDelete)).ToListAsync();
             Parallax parallax = await _dbContext.Parallaxes.FirstOrDefaultAsync();
             List<Space> spaces = await _dbContext.Spaces.Where(x => x.IsDelete == false).ToListAsync();
 
@@ -124,12 +124,9 @@ namespace FinalProject.Controllers
                 if (dbProduct == null)
                     continue;
 
-                basketViewModel.Price = Convert.ToDouble(dbProduct.NewPice);
-                //foreach (var size in dbProduct.ProductSizes)
-                //{
-                //    basketViewModel.Size = size.Size.Name;
-                //}
+                basketViewModel.Price = Convert.ToDouble(dbProduct.Price);
                 basketViewModel.Image = dbProduct.Image;
+                basketViewModel.Discount = dbProduct.Discount;
                 basketViewModel.ProductName = dbProduct.Name;
 
                 result.Add(basketViewModel);
@@ -183,12 +180,9 @@ namespace FinalProject.Controllers
                 if (dbProduct == null)
                     continue;
 
-                basketViewModel.Price = Convert.ToDouble(dbProduct.NewPice);
-                //foreach (var size in dbProduct.ProductSizes)
-                //{
-                //    basketViewModel.Size = size.Size.Name;
-                //}
+                basketViewModel.Price = Convert.ToDouble(dbProduct.Price);
                 basketViewModel.Image = dbProduct.Image;
+                basketViewModel.Discount = dbProduct.Discount;
                 basketViewModel.ProductName = dbProduct.Name;
 
                 result.Add(basketViewModel);
@@ -217,11 +211,8 @@ namespace FinalProject.Controllers
                 if (dbProduct == null)
                     continue;
 
-                basketViewModel.Price = Convert.ToDouble(dbProduct.NewPice);
-                //foreach (var size in dbProduct.ProductSizes)
-                //{
-                //    basketViewModel.Size = size.Size.Name;
-                //}
+                basketViewModel.Price = Convert.ToDouble(dbProduct.Price);
+                basketViewModel.Discount = dbProduct.Discount;
                 basketViewModel.Image = dbProduct.Image;
                 basketViewModel.ProductName = dbProduct.Name;
 

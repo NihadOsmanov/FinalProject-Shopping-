@@ -102,6 +102,9 @@ namespace FinalProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -117,6 +120,9 @@ namespace FinalProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -312,10 +318,13 @@ namespace FinalProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BrandId")
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Discount")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -329,10 +338,7 @@ namespace FinalProject.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("NewPice")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OldPrice")
+                    b.Property<string>("Price")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rate")
@@ -775,7 +781,7 @@ namespace FinalProject.Migrations
             modelBuilder.Entity("FinalProject.Models.Comment", b =>
                 {
                     b.HasOne("FinalProject.Models.Blog", "Blog")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -787,7 +793,9 @@ namespace FinalProject.Migrations
                 {
                     b.HasOne("FinalProject.Models.Brand", "Brand")
                         .WithMany("Products")
-                        .HasForeignKey("BrandId");
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FinalProject.Models.Category", "Category")
                         .WithMany("Products")
@@ -893,6 +901,8 @@ namespace FinalProject.Migrations
             modelBuilder.Entity("FinalProject.Models.Blog", b =>
                 {
                     b.Navigation("BlogDetail");
+
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("FinalProject.Models.Brand", b =>

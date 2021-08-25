@@ -13,6 +13,13 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
+#line 1 "C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\Areas\AdminPanel\Views\_ViewImports.cshtml"
+using FinalProject;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\Areas\AdminPanel\Views\_ViewImports.cshtml"
 using FinalProject.ViewModels;
 
@@ -27,7 +34,7 @@ using FinalProject.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4f8c150c4e34fb611199c4d5d198c21d13e806d6", @"/Areas/AdminPanel/Views/Shared/_ValidationScriptsPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f1a47930fd97d7ba0cbd04ed605ef10c55aae5c5", @"/Areas/AdminPanel/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a43ddf1f284215970e630dd996283406abb8a00", @"/Areas/AdminPanel/Views/_ViewImports.cshtml")]
     public class Areas_AdminPanel_Views_Shared__ValidationScriptsPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

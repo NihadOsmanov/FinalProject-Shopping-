@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Layihe.Areas.AdminPanel.Utils
+namespace FinalProject.Areas.AdminPanel.Utils
 {
     public static class FileUtil
     {

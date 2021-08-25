@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    List<Brand> brands = Model;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body bg-dark font-weight-bold text-white">
+                <p style="padding-bottom: 10px; text-align:center">
+                    <a asp-action="Create" class="btn btn-outline-success" style="width: 160px">Create</a>
+                </p>
+                <h4 class="card-title text-white">Brand</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-white">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var brand in brands)
+                            {
+                            <tr>
+                                <td class="text-white">@brand.Name</td>
+                                <td style="text-align: end">
+                                    <a class="btn btn-outline-primary" asp-action="Update" asp-route-id="@brand.Id">Update</a>
+                                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@brand.Id">Delete</a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -97,6 +97,7 @@ $(document).ready(function () {
                 url: '/Shop/Search?search=' + search,
                 type: "Get",
                 success: function (res) {
+                    //console.log(res)
                     $("#old-courses").css("display", "none")
                     $(`#new-shop`).append(res)
                 }
@@ -278,28 +279,79 @@ $(document).on('click', `#buttonCon`, function () {
 // Filter
 $(document).ready(function () {
     let arr = [];
+    let sizeArr = [];
+    let price;
 
-    $(document).on("click", ".random", function () {
-        let productId = $(this).attr("id")
-        if (arr.includes(productId)) {
-            const index = arr.indexOf(productId);
-            if (index > -1) {
-                arr.splice(index, 1);
+    $(document).on("click", ".filtering", function () {
+        let productId;
+        let sizeId;
+        if ($(this).hasClass("randomSize")) {
+            sizeId = $(this).attr("id");
+            if (sizeArr.includes(sizeId)) {
+                const index = sizeArr.indexOf(sizeId);
+                if (index > -1) {
+                    arr.splice(index, 1);
+                }
+            } else {
+                sizeArr.push(sizeId);
             }
-        } else {
-            arr.push(productId);
         }
 
-        let test = JSON.stringify(arr);
+        if ($(this).hasClass("random")) {
+            productId = $(this).attr("id");
+            if (arr.includes(productId)) {
+                const index = arr.indexOf(productId);
+                if (index > -1) {
+                    arr.splice(index, 1);
+                }
+            } else {
+                arr.push(productId);
+            }
+        }
+
+        
+
+        //let test = JSON.stringify(arr);
 
         $.ajax({
-            url: "shop/filtering?productId=" + test,
+            url: "shop/filtering",
+            data: {
+                productIds: arr,
+                sizeIds: sizeArr,
+                price: price
+            },
             type: "Post",
             success: function (res) {
-                console.log(res);
+                //console.log(res);
+                $("#old-courses").css("display", "none")
+                $(`#new-shop`).append(res)
             }
         });
     })
+
+    $(document).on("input change", "#range", function () {
+        price = $("#range").val();
+
+        //let test = JSON.stringify(arr);
+
+        $.ajax({
+            url: "shop/filtering",
+            data: {
+                productIds: arr,
+                sizeIds: sizeArr,
+                price: price
+            },
+            type: "Post",
+            success: function (res) {
+                //console.log(res);
+                $("#old-courses").css("display", "none")
+                $("#new-shop").html("");
+                $(`#new-shop`).append(res)
+            }
+        });
+    })
+
+
 })
 
 //Email Validate

@@ -21,14 +21,14 @@
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="NewPice"></label>
-                        <input  asp-for="NewPice" class="form-control" placeholder="NewPice">
-                        <span asp-validation-for="NewPice" class="text-danger"></span>
+                        <label asp-for="Price"></label>
+                        <input asp-for="Price" class="form-control" placeholder="Price">
+                        <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="OldPrice"></label>
-                        <input asp-for="OldPrice"  class="form-control" placeholder="OldPrice">
-                        <span asp-validation-for="OldPrice" class="text-danger"></span>
+                        <label asp-for="Discount"></label>
+                        <input asp-for="Discount" class="form-control" placeholder="Discount">
+                        <span asp-validation-for="Discount" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Rate"></label>
@@ -61,6 +61,15 @@
                             @foreach (Category category in ViewBag.Categories)
                             {
                                 <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" id="Brand">
+                        <label>Select Brand</label>
+                        <select class="custom-select" name="BrandId">
+                            @foreach (Brand brand in ViewBag.Brands)
+                            {
+                                <option value="@brand.Id">@brand.Name</option>
                             }
                         </select>
                     </div>

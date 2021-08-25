@@ -13,6 +13,13 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
+#line 1 "C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\Areas\AdminPanel\Views\_ViewImports.cshtml"
+using FinalProject;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\Areas\AdminPanel\Views\_ViewImports.cshtml"
 using FinalProject.ViewModels;
 
@@ -27,7 +34,7 @@ using FinalProject.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a4f42085d235e48968578b6cfbd226a1d362b5ae", @"/Areas/AdminPanel/Views/Blog/Delete.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f1a47930fd97d7ba0cbd04ed605ef10c55aae5c5", @"/Areas/AdminPanel/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0a43ddf1f284215970e630dd996283406abb8a00", @"/Areas/AdminPanel/Views/_ViewImports.cshtml")]
     public class Areas_AdminPanel_Views_Blog_Delete : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width: 200px !important; height: 200px !important; object-fit: cover !important"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -73,7 +80,7 @@ using FinalProject.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<div class=\"col-md-12 grid-margin stretch-card bg-dark text-white\">\r\n    <div class=\"card d-flex flex-column bg-dark\">\r\n        <div class=\"card-body\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a4f42085d235e48968578b6cfbd226a1d362b5ae5974", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a4f42085d235e48968578b6cfbd226a1d362b5ae6202", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -111,7 +118,7 @@ AddHtmlAttributeValue("", 268, blogDetail.Blog.Image, 268, 22, false);
         </div>
         <div class=""row"" style=""margin-left: 30px; padding-bottom: 15px"">
             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4f42085d235e48968578b6cfbd226a1d362b5ae8350", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4f42085d235e48968578b6cfbd226a1d362b5ae8578", async() => {
                 WriteLiteral("\r\n                <button type=\"submit\" class=\"btn btn-outline-danger\">Delete</button>\r\n            ");
             }
             );
@@ -129,7 +136,7 @@ AddHtmlAttributeValue("", 268, blogDetail.Blog.Image, 268, 22, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4f42085d235e48968578b6cfbd226a1d362b5ae9897", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4f42085d235e48968578b6cfbd226a1d362b5ae10125", async() => {
                 WriteLiteral("Go Back");
             }
             );

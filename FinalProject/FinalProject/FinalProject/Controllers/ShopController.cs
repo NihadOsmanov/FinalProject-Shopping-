@@ -26,12 +26,14 @@ namespace FinalProject.Controllers
             List<Product> products = await _dbContext.Products.Where(x => x.IsDelete == false).OrderByDescending(x => x.Id).ToListAsync();
             Shop shop = await _dbContext.Shops.Where(x => x.IsDelete == false).FirstOrDefaultAsync();
             List<Brand> brands = await _dbContext.Brands.ToListAsync();
+            List<Size> sizes = await _dbContext.Sizes.ToListAsync();
 
             ShopViewModel shopViewModel = new ShopViewModel()
             {
                 Products = products,
                 Shop = shop,
-                Brands = brands
+                Brands = brands,
+                Sizes = sizes
             };
             return View(shopViewModel);
         }
@@ -75,9 +77,53 @@ namespace FinalProject.Controllers
             return PartialView("_ShopViewPartial", products);
         }
 
-        public async Task<IActionResult> Filtering(string productId)
+
+        #endregion
+
+        #region Filter
+        public async Task<IActionResult> Filtering(List<string> productIds, List<string> sizeIds,string price)
         {
-            return Json(productId);
+            List<Product> products = new List<Product>();
+            if (productIds.Count != 0 || sizeIds.Count != 0)
+            {
+                if(productIds.Count != 0 && sizeIds.Count != 0)
+                {
+                    foreach (var productId in productIds)
+                    {
+                        foreach (var sizeId in sizeIds)
+                        {
+                            products = await _dbContext.Products.Include(x => x.ProductSizes).ThenInclude(x => x.Size)
+                                .Where(x => x.BrandId == Convert.ToInt32(productId) && x.ProductSizes.Any(x => x.SizeId == Convert.ToInt32(sizeId)))
+                                .OrderByDescending(x => x.Id).ToListAsync();
+                        }
+                    }
+                }
+                else if(productIds.Count != 0)
+                {
+                    foreach (var productId in productIds)
+                    {
+                        products = await _dbContext.Products.Where(x => x.BrandId == Convert.ToInt32(productId)).OrderByDescending(x => x.Id).ToListAsync();
+                    }
+                }
+                else
+                {
+                    foreach (var productId in sizeIds)
+                    {
+                        products = await _dbContext.Products.Where(x => x.BrandId == Convert.ToInt32(productId)).OrderByDescending(x => x.Id).ToListAsync();
+                    }
+                }
+            }
+            else
+            {
+                products = await _dbContext.Products.OrderByDescending(x => x.Id).ToListAsync();
+            }
+
+            if (!string.IsNullOrEmpty(price))
+            {
+                return PartialView("_ShopViewPartial", products.Where(x => Convert.ToDouble(x.Price) <= Convert.ToDouble(price)).ToList());
+            }
+
+            return PartialView("_ShopViewPartial", products);
         }
 
         #endregion

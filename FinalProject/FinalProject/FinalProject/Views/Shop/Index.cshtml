@@ -53,14 +53,11 @@
                                         foreach (var item in shopViewModel.Brands)
                                         {
                                             <div class="custom-control custom-checkbox collection-filter-checkbox">
-                                                <a asp-controller="Shop" asp-action="Filtering" asp-route-id="@item.Id">
-                                                    <input type="checkbox"
-                                                           class="custom-control-input random"
-                                                           value="@item.Name"
-                                                           id="@item.Id" />
-                                                    <label class="custom-control-label" for="titan">@item.Name</label>
-
-                                                </a>
+                                                <input type="checkbox"
+                                                       class="custom-control-input random filtering"
+                                                       value="@item.Name"
+                                                       id="@item.Id" />
+                                                <label class="custom-control-label" for="titan">@item.Name</label>
                                             </div>
                                         }
                                     }
@@ -71,18 +68,15 @@
                             <h3 class="collapse-block-title">Size</h3>
                             <div class="collection-collapse-block-content">
                                 <div class="collection-brand-filter">
-                                    <div class=" custom-control custom-checkbox collection-filter-checkbox">
-                                        <input type="checkbox" class="custom-control-input" value="S" id="S" />
-                                        <label class="custom-control-label" for="titan">S</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox collection-filter-checkbox">
-                                        <input type="checkbox" class="custom-control-input" value="M" id="M" />
-                                        <label class="custom-control-label" for="titan">M</label>
-                                    </div>
-                                    <div class=" custom-control custom-checkbox collection-filter-checkbox ">
-                                        <input type="checkbox" class="custom-control-input" value="L" id="L" />
-                                        <label class="custom-control-label" for="titan">L</label>
-                                    </div>
+                                    @{
+                                        foreach (var item in shopViewModel.Sizes)
+                                        {
+                                            <div class=" custom-control custom-checkbox collection-filter-checkbox">
+                                                <input type="checkbox" class="custom-control-input randomSize filtering" value="@item.Name" id="@item.Id" />
+                                                <label class="custom-control-label" for="titan">@item.Name</label>
+                                            </div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -91,10 +85,10 @@
                             <div class="collection-collapse-block-content">
                                 <div class="collection-brand-filter">
                                     <div class="rSlider">
-                                        <span class="slide"></span>
+                                        <span class="slide price-input"></span>
                                         <input id="range" type="range" min="0" max="1000" />
                                     </div>
-                                    <span id="demo" style="font-weight: 600"></span>
+                                    <span id="demo" class="priceValue" style="font-weight: 600"></span>
                                 </div>
                             </div>
                         </div>
@@ -177,7 +171,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="cart-box" id="cart">
-                                                                <button class="btn-add-cart" id="AddBasket">Add to Cart</button>
+                                                                <button class="btn-add-cart" id="AddBasket" style="cursor: pointer">Add to Cart</button>
                                                                 <input hidden id="ProductId" value="@product.Id" />
                                                             </div>
                                                             <div class="product-detail">
@@ -193,8 +187,8 @@
                                                                     <h6 style="cursor: pointer">@product.Name</h6>
                                                                 </a>
                                                                 <h4>
-                                                                    $@product.NewPice
-                                                                    <span class="money"> $@product.OldPrice</span>
+                                                                    $@((Convert.ToDouble(product.Price) * product.Discount)/100)
+                                                                    <span class="money"> $@product.Price</span>
                                                                 </h4>
                                                             </div>
                                                         </div>

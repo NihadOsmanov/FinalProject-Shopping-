@@ -4,6 +4,7 @@
     //int count = 0;
     bool isTrue = true;
     bool isTrue2 = true;
+    bool isSelected = true;
 }
 
 <!--Slider start-->
@@ -69,7 +70,7 @@
                                     <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
                                         <h6>@product.Name</h6>
                                     </a>
-                                    <span class="price-new">$@product.NewPice <span class="price-old"> $@product.OldPrice</span></span>
+                                    <span class="price-new">$@((Convert.ToDouble(product.Price) * product.Discount)/100) <span class="price-old"> $@product.Price</span></span>
                                 </div>
                             </div>
                         </div>
@@ -115,36 +116,26 @@
         <div class="row">
             <div class="col theme-tab">
                 <div class="tabs-title">
-                    @*<nav>
-                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
-                        </div>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
-                    </div>*@
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist" style="justify-content: center">
                             @foreach (var category in homeViewModel.Categories)
                             {
-                                <button type="button" class="nav-link @(isTrue?"active":"")" style="color: black; cursor: pointer" id="nav-@category.Name-tab" data-bs-toggle="tab" data-bs-target="#nav-@category.Name" role="tab" aria-controls="nav-@category.Name">@category.Name.ToLower()</button>
+                                <button type="button" class="nav-link @(isTrue?"active":"")" style="color: black; cursor: pointer" id="nav-@category.Id-tab" data-bs-toggle="tab" data-bs-target="#nav-@category.Id" role="tab" aria-controls="nav-@category.Id" aria-selected=" @(isSelected?"true":"")">@category.Name.ToLower()</button>
                                 isTrue = false;
+                                isSelected = false;
                             }
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         @foreach (var category in homeViewModel.Categories)
                         {
-                            <div class="row no-slider fade @(isTrue2?"active show":"")" style="display: flex" id="nav-@category.Name" role="tabpanel" aria-labelledby="nav-@category.Name-tab">
+                        <div class="row no-slider tab-pane fade @(isTrue2?"active show":"")" id="nav-@category.Id" role="tabpanel" aria-labelledby="nav-@category.Id">
+                            <div class="row">
                                 @foreach (var product in category.Products)
                                 {
                                     <div class="product-box">
                                         <div class="item">
-                                            <div class="card" data-id="@category.Name.ToLower()">
+                                            <div class="card" id="@category.Id">
                                                 <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
                                                     <img class="card-img-top"
                                                          src="~/img/product/@product.Image"
@@ -170,8 +161,8 @@
                                                         <h6>@product.Name</h6>
                                                     </a>
                                                     <span class="price-new">
-                                                        $@product.NewPice
-                                                        <span class="price-old"> $@product.OldPrice</span>
+                                                        @((Convert.ToDouble(product.Price) * product.Discount)/100)
+                                                        <span class="price-old"> $@product.Price</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -179,6 +170,7 @@
                                     </div>
                                 }
                             </div>
+                        </div>
                             //count++;
                             isTrue2 = false;
                         }
@@ -227,20 +219,3 @@
         </div>
     </div>
 </section>
-<!--B-sapce end-->
-@*<script>
-        $(".categoryItem").click(function () {
-            if (this.attr('id') === $(".product-box").attr("id")){
-                $(".product-box").style.display = "flex";
-            }
-        })
-
-    </script>*@
-<script>
-    //$(".categoryItem").click(function () {
-    //    if (this.attr('id') === $(".product-box").attr("id")) {
-    //        $(".product-box").style.display = "flex";
-    //    }
-    //})
-
-</script>

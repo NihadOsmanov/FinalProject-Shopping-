@@ -23,22 +23,22 @@ namespace FinalProject.Areas.AdminPanel.Controllers
 
         public IActionResult Index()
         {
-            var categories = _dbContext.Categories.ToList();
+            var categories = _dbContext.Categories.Where(x => x.IsDeleted == false).ToList();
 
             return View(categories);
         }
         #region Delete
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
                 return NotFound();
 
-            var categories = _dbContext.Categories.ToList();
+            var category = await _dbContext.Categories.Where(x => x.IsDeleted == false).FirstOrDefaultAsync(x => x.Id == id);
 
-            if (categories == null)
+            if (category == null)
                 return NotFound();
 
-            return View(categories);
+            return View(category);
         }
 
         [HttpPost]
@@ -49,7 +49,7 @@ namespace FinalProject.Areas.AdminPanel.Controllers
             if (id == null)
                 return NotFound();
 
-            var categories = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            var categories = await _dbContext.Categories.Where(x => x.IsDeleted == false).FirstOrDefaultAsync(x => x.Id == id);
 
             if (categories == null)
                 return NotFound();
@@ -63,7 +63,7 @@ namespace FinalProject.Areas.AdminPanel.Controllers
         #endregion
 
         #region Create
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -77,7 +77,7 @@ namespace FinalProject.Areas.AdminPanel.Controllers
                 return View();
             }
 
-            var isExist = _dbContext.Categories.Any(x => x.Name.ToLower() == category.Name.ToLower());
+            var isExist = _dbContext.Categories.Where(x => x.IsDeleted == false).Any(x => x.Name.ToLower() == category.Name.ToLower());
             if (isExist)
             {
                 ModelState.AddModelError("Name", "Bu adda kategoriya var");
@@ -96,7 +96,7 @@ namespace FinalProject.Areas.AdminPanel.Controllers
             if (id == null)
                 return NotFound();
 
-            var category = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            var category = await _dbContext.Categories.Where(x => x.IsDeleted == false).FirstOrDefaultAsync(x => x.Id == id);
 
             if (category == null)
                 return NotFound();
@@ -116,12 +116,12 @@ namespace FinalProject.Areas.AdminPanel.Controllers
             if (id == null)
                 return NotFound();
 
-            var dbCategory = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            var dbCategory = await _dbContext.Categories.Where(x => x.IsDeleted == false).FirstOrDefaultAsync(x => x.Id == id);
 
             if (dbCategory == null)
                 return NotFound();
 
-            var isExist = await _dbContext.Categories.AnyAsync(x => x.Name.ToLower() == category.Name.ToLower() && x.Id != id);
+            var isExist = await _dbContext.Categories.Where(x => x.IsDeleted == false).AnyAsync(x => x.Name.ToLower() == category.Name.ToLower() && x.Id != id);
             if (isExist)
             {
                 ModelState.AddModelError("Name", "Bu adda kategoriya var");

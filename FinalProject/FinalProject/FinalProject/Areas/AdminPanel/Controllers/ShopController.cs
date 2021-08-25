@@ -1,7 +1,7 @@
 ﻿using FinalProject.DataAccesLayer;
 using FinalProject.Models;
 using FinalProject.Utils;
-using Layihe.Areas.AdminPanel.Utils;
+using FinalProject.Areas.AdminPanel.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -43,20 +43,23 @@ namespace FinalProject.Areas.AdminPanel.Controllers
         #region Create
         public IActionResult Create()
         {
-            ViewBag.Categories = _dbContext.Categories.ToList();
-            ViewBag.Sizes = _dbContext.Sizes.ToList();
+            ViewBag.Categories = _dbContext.Categories.Where(x => x.IsDeleted == false).ToList();
+            ViewBag.Sizes = _dbContext.Sizes.Where(x => x.IsDelete == false).ToList();
+            ViewBag.Brands = _dbContext.Brands.Where(x => x.IsDeleted == false).ToList();
 
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product, int? CategoryId, List<int?> SizesId)
+        public async Task<IActionResult> Create(Product product, int? CategoryId, List<int?> SizesId, int? BrandId)
         {
-            var categories = _dbContext.Categories.ToList();
+            var categories = await _dbContext.Categories.Where(x => x.IsDeleted == false).ToListAsync();
             ViewBag.Categories = categories;
-            var sizes = _dbContext.Sizes.ToList();
+            var sizes = await _dbContext.Sizes.Where(x => x.IsDelete == false).ToListAsync();
             ViewBag.Sizes = sizes;
+            var brands = await _dbContext.Brands.Where(x => x.IsDeleted == false).ToListAsync();
+            ViewBag.Brands = brands;
 
             if (!ModelState.IsValid)
             {
@@ -74,9 +77,20 @@ namespace FinalProject.Areas.AdminPanel.Controllers
                 return BadRequest();
             }
 
+            if (BrandId == null)
+            {
+                ModelState.AddModelError("", "Please select Brand");
+                return View();
+            }
+
+            if (brands.All(x => x.Id != BrandId.Value))
+            {
+                return BadRequest();
+            }
+
             if (SizesId.Count == 0)
             {
-                ModelState.AddModelError("", "Please select Sizes");
+                ModelState.AddModelError("", "Please select Size");
                 return View();
             }
 
@@ -121,19 +135,7 @@ namespace FinalProject.Areas.AdminPanel.Controllers
                 productSizes.Add(productSize);
             }
 
-            if (Convert.ToDouble(product.NewPice) < 0)
-            {
-                ModelState.AddModelError("", "Price can not be less than 0");
-                return View();
-            }
-
-            if (Convert.ToDouble(product.OldPrice) <= Convert.ToDouble(product.NewPice))
-            {
-                ModelState.AddModelError("", "Oldprice can not be less than NewPrice");
-                return View();
-            }
-
-            if (Convert.ToDouble(product.OldPrice) < 0)
+            if (Convert.ToDouble(product.Price) < 0)
             {
                 ModelState.AddModelError("", "Price can not be less than 0");
                 return View();
@@ -146,6 +148,7 @@ namespace FinalProject.Areas.AdminPanel.Controllers
             }
 
             product.CategoryId = CategoryId.Value;
+            product.BrandId = BrandId.Value;
             product.ProductSizes = productSizes;
             await _dbContext.AddRangeAsync(product, product.ProductDetail);
             await _dbContext.SaveChangesAsync();
@@ -170,7 +173,7 @@ namespace FinalProject.Areas.AdminPanel.Controllers
             if (id == null)
                 return NotFound();
 
-            var product = _dbContext.Products.Where(x => x.IsDelete == false).Include(x => x.ProductDetail).Include(x => x.Category)
+            var product = _dbContext.Products.Where(x => x.IsDelete == false).Include(x => x.ProductDetail).Include(x => x.Category).Include(x => x.Brand)
                                         .Include(x => x.ProductSizes).ThenInclude(x => x.Size).FirstOrDefault(y => y.Id == id);
 
             if (product == null)
@@ -182,12 +185,14 @@ namespace FinalProject.Areas.AdminPanel.Controllers
         #endregion
 
         #region Update
-        public IActionResult Update(int? id)
+        public async Task<IActionResult> Update(int? id)
         {
-            var categories = _dbContext.Categories.ToList();
+            var categories = await _dbContext.Categories.Where(x => x.IsDeleted == false).ToListAsync();
             ViewBag.Categories = categories;
-            var sizes = _dbContext.Sizes.ToList();
+            var sizes = await _dbContext.Sizes.Where(x => x.IsDelete == false).ToListAsync();
             ViewBag.Sizes = sizes;
+            var brands = await _dbContext.Brands.Where(x => x.IsDeleted == false).ToListAsync();
+            ViewBag.Brands = brands;
 
             if (id == null)
                 return NotFound();
@@ -202,13 +207,15 @@ namespace FinalProject.Areas.AdminPanel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int? id, Product product, int? CategoryId, List<int?> SizesId)
+        public async Task<IActionResult> Update(int? id, Product product, int? CategoryId, List<int?> SizesId, int? BrandId)
         {
-            
-            var categories = _dbContext.Categories.ToList();
+
+            var categories = await _dbContext.Categories.Where(x => x.IsDeleted == false).ToListAsync();
             ViewBag.Categories = categories;
-            var sizes = _dbContext.Sizes.ToList();
+            var sizes = await _dbContext.Sizes.Where(x => x.IsDelete == false).ToListAsync();
             ViewBag.Sizes = sizes;
+            var brands = await _dbContext.Brands.Where(x => x.IsDeleted == false).ToListAsync();
+            ViewBag.Brands = brands;
 
             if (!ModelState.IsValid)
             {
@@ -234,6 +241,17 @@ namespace FinalProject.Areas.AdminPanel.Controllers
             }
 
             if (categories.All(x => x.Id != CategoryId))
+            {
+                return BadRequest();
+            }
+
+            if (BrandId == null)
+            {
+                ModelState.AddModelError("", "Please select Brand");
+                return View();
+            }
+
+            if (brands.All(x => x.Id != BrandId.Value))
             {
                 return BadRequest();
             }
@@ -281,13 +299,7 @@ namespace FinalProject.Areas.AdminPanel.Controllers
                 productSizes.Add(productSize);
             }
 
-            if (Convert.ToInt32(product.NewPice) < 0)
-            {
-                ModelState.AddModelError("", "Price can not be less than 0");
-                return View();
-            }
-
-            if (Convert.ToInt32(product.OldPrice) < 0)
+            if (Convert.ToInt32(product.Price) < 0)
             {
                 ModelState.AddModelError("", "Price can not be less than 0");
                 return View();
@@ -295,13 +307,14 @@ namespace FinalProject.Areas.AdminPanel.Controllers
 
             dbProduct.Name = product.Name;
             dbProduct.ProductDetail.Detail = product.ProductDetail.Detail;
-            dbProduct.OldPrice = product.OldPrice;
-            dbProduct.NewPice = product.NewPice;
+            dbProduct.Price = product.Price;
+            dbProduct.Discount = product.Discount;
             dbProduct.Rate = product.Rate;
             dbProduct.ProductDetail.Febric = product.ProductDetail.Febric;
             dbProduct.ProductDetail.Color = product.ProductDetail.Color;
             dbProduct.ProductDetail.Material = product.ProductDetail.Material;
             dbProduct.CategoryId = (int)CategoryId;
+            dbProduct.BrandId = (int)BrandId;
             dbProduct.ProductSizes = productSizes;
 
             await _dbContext.SaveChangesAsync();

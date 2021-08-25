@@ -11,7 +11,7 @@ namespace FinalProject.ViewModels
         public Shop Shop { get; set; }
         public ProductDetail ProductDetail { get; set; }
         public List<Product> Products { get; set; }
-
+        public List<Size> Sizes { get; set; }
         public List<Brand> Brands { get; set; }
     }
 }

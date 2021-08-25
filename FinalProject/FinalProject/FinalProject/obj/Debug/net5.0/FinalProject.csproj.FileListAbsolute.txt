@@ -388,3 +388,7 @@ C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProj
 C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\obj\Debug\net5.0\ref\FinalProject.dll
 C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\obj\Debug\net5.0\FinalProject.pdb
 C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\obj\Debug\net5.0\FinalProject.genruntimeconfig.cache
+C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\obj\Debug\net5.0\Razor\Areas\AdminPanel\Views\Brand\Index.cshtml.g.cs
+C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\obj\Debug\net5.0\Razor\Areas\AdminPanel\Views\Brand\Delete.cshtml.g.cs
+C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\obj\Debug\net5.0\Razor\Areas\AdminPanel\Views\Brand\Create.cshtml.g.cs
+C:\Users\ASUS\Desktop\FinalProject-Shopping-\FinalProject\FinalProject\FinalProject\obj\Debug\net5.0\Razor\Areas\AdminPanel\Views\Brand\Update.cshtml.g.cs

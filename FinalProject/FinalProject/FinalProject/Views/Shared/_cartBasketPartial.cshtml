@@ -7,7 +7,6 @@
             <th scope="col">Image</th>
             <th scope="col">Name</th>
             <th scope="col">Count</th>
-            @*<th scope="col">Size</th>*@
             <th scope="col">Price</th>
             <th scope="col">Action</th>
         </tr>
@@ -22,8 +21,7 @@
                     <td style="vertical-align:middle"><img src="~/img/product/@item.Image" class="img-fluid" style="height:100px;"></td>
                     <td style="vertical-align:middle">@item.ProductName</td>
                     <td style="vertical-align:middle">@item.Count</td>
-                    @*<td style="vertical-align:middle">@item.Size</td>*@
-                <td style="vertical-align:middle">$@Math.Round(((double)item.Price * (double)item.Count))</td>
+                    <td style="vertical-align:middle">$@Math.Round(((((double)item.Price * item.Discount) / 100 ) * (double)item.Count))</td>
                     <td style="vertical-align:middle; width: 600px;">
                         <button class="btn btn-danger" id="decrease" value="@item.Id">-</button>
                         <input hidden type="number" id="cart_amount" value="@item.Count" min="0" class="amount cart_amount" />
@@ -31,11 +29,11 @@
                         <a asp-controller="Home" asp-action="RemoveAll" asp-route-id="@item.Id" class="btn btn-danger">Remove</a>
                     </td>
                 </tr>
-                { Math.Round((sum += (double)(item.Count) * (double)item.Price)); }
+                { sum += ((item.Count) * ((Convert.ToDouble(item.Price) * item.Discount) / 100)); }
             }
         }
     </tbody>
 </table>
 <h2 style="text-align: end; padding-right: 40px">
-    Total : $@sum
+    Total : $@Math.Round(sum, 2)
 </h2>

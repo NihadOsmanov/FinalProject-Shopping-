@@ -143,56 +143,24 @@ $(document).ready(function () {
 //});
 
 $("#ngb-tab-3").on("click", function () {
+    console.log("ok1")
     document.getElementById("ngb-tab-3-panel").style.display = "block";
     document.getElementById("ngb-tab-4-panel").style.display = "none";
-    document.getElementById("ngb-tab-5-panel").style.display = "none";
     document.getElementById("ngb-tab-3").style.color = "#ec6356";
     document.getElementById("ngb-tab-3").style.borderBottom = "2px solid #ec6356";
     document.getElementById("ngb-tab-4").style.color = "#222";
     document.getElementById("ngb-tab-4").style.borderBottom = "2px solid #dee2e6";
-    document.getElementById("ngb-tab-5").style.color = "#222";
-    document.getElementById("ngb-tab-5").style.borderBottom = "2px solid #dee2e6";
 });
 $("#ngb-tab-4").on("click", function () {
+    console.log("ok2")
+
     document.getElementById("ngb-tab-3-panel").style.display = "none";
     document.getElementById("ngb-tab-4-panel").style.display = "block";
-    document.getElementById("ngb-tab-5-panel").style.display = "none";
     document.getElementById("ngb-tab-4").style.color = "#ec6356";
     document.getElementById("ngb-tab-4").style.borderBottom = "2px solid #ec6356";
     document.getElementById("ngb-tab-3").style.color = "#222";
     document.getElementById("ngb-tab-3").style.borderBottom = "2px solid #dee2e6";
-    document.getElementById("ngb-tab-5").style.color = "#222";
-    document.getElementById("ngb-tab-5").style.borderBottom = "2px solid #dee2e6";
 });
-$("#ngb-tab-5").on("click", function () {
-    document.getElementById("ngb-tab-3-panel").style.display = "none";
-    document.getElementById("ngb-tab-5-panel").style.display = "block";
-    document.getElementById("ngb-tab-4-panel").style.display = "none";
-    document.getElementById("ngb-tab-4").style.color = "#222";
-    document.getElementById("ngb-tab-4").style.borderBottom = "2px solid #dee2e6";
-    document.getElementById("ngb-tab-3").style.color = "#222";
-    document.getElementById("ngb-tab-3").style.borderBottom = "2px solid #dee2e6";
-    document.getElementById("ngb-tab-5").style.color = "#ec6356";
-    document.getElementById("ngb-tab-5").style.borderBottom = "2px solid #ec6356";
-});
-
-//$(document).on('click', '.nav-pills li a', function (e) {
-//    e.preventDefault();
-//    let category = $(this).attr('data-id');
-//    let products = $('.product-box');
-
-//    products.each(function () {
-//        if (category == $(this).attr('data-id')) {
-//            $(this).parent().fadeIn();
-//        }
-//        else {
-//            $(this).parent().hide();
-//        }
-//    })
-//    //if (category == 'all') {
-//    //    products.parent().fadeIn();
-//    //}
-//})
 
 const toTop = document.querySelector(".to-top");
 
@@ -221,7 +189,8 @@ $(window).on("load", function () {
   $(".slide").css("width", "50%");
   $(document).on("input change", "#range", function () {
     $("#demo").html($(this).val() + "$");
-    var slideWidth = ($(this).val() * 100) / 1000;
+      var slideWidth = ($(this).val() * 100) / 1000;
+      
 
     $(".slide").css("width", slideWidth + "%");
   });
@@ -233,25 +202,6 @@ $(".filter-back").on("click", function () {
     document.getElementById("col-filter").style.display = "block";
   });
 });
-
-// titan.addEventListener("click", function () {
-//   isChecked = !isChecked;
-//   let a = document.querySelector("#cl3").childNodes;
-//   let productCart = document.createElement("div");
-//   productCart.className = "col-grid-box col-lg-3";
-//   // console.log(tempProductBox.innerHTML);
-//   if (isChecked) {
-//     a.forEach((product) => {
-//       if (product.id === "watchTitan") {
-//         productBox.innerHTML = "";
-//         productBox.appendChild(product);
-//       }
-//     });
-//   } else {
-//     productBox.innerHTML += tempProductBox.innerHTML;
-//   }
-//   // console.log(titanBox.getAttribute("checked"));
-// });
 
 (function () {
   "use strict";

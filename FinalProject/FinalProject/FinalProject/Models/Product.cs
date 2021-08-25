@@ -18,8 +18,8 @@ namespace FinalProject.Models
         public string Name { get; set; }
 
         
-        public string NewPice { get; set; }
-        public string OldPrice { get; set; }
+        public string Price { get; set; }
+        public int Discount { get; set; }
 
         public string Image { get; set; }
 
@@ -35,7 +35,7 @@ namespace FinalProject.Models
         public Category Category { get; set; }
         public ICollection<ProductSize> ProductSizes { get; set; }
 
-        public int? BrandId { get; set; }
+        public int BrandId { get; set; }
 
         public Brand Brand { get; set; }
 

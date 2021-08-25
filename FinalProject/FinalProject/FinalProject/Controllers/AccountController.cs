@@ -42,7 +42,7 @@ namespace FinalProject.Controllers
             var existUser = await _userManager.FindByNameAsync(loginView.Username);
             if (existUser == null)
             {
-                ModelState.AddModelError("", "Email or password invalid");
+                ModelState.AddModelError("", "Username invalid");
                 return View();
             }
 
