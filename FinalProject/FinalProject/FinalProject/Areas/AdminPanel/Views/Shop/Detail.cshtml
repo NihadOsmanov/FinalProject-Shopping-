@@ -16,7 +16,7 @@
             <h4 style="font-family: sans-serif; font-size: 23px">OldPrice</h4> <p class="font-italic"> @product.Price</p>
         </div>
         <div class="card-body">
-            <h4 style="font-family: sans-serif; font-size: 23px">NewPrice</h4> <p class="font-italic"> @product.Discount</p>
+            <h4 style="font-family: sans-serif; font-size: 23px">NewPrice</h4> <p class="font-italic"> @(Convert.ToDouble(product.Price) - ((Convert.ToDouble(product.Price) * product.Discount) / 100))</p>
         </div>
         <div class="card-body">
             <h4 style="font-family: sans-serif; font-size: 23px">Rate</h4> <p class="font-italic"> @product.Rate</p>

@@ -44,7 +44,6 @@
                 </h3>
                 <ul class="post-social">
                     <li>Posted By : @commentViewModel.BlogDetail.Blog.Posted</li>
-                    <li><i class="fa fa-comments"></i> @commentViewModel.Comments.Count Comment</li>
                 </ul>
                 <p>
                     @Html.Raw(commentViewModel.BlogDetail.Description)
@@ -58,7 +57,7 @@
                     <ul class="comment-section">
                         <li>
                             <div class="media">
-                                <img src="~/img/Blog/@comment.Blog.Image" alt="comment-1" />
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="comment-1" />
                                 <div class="media-body">
                                     <h6>
                                         @comment.Name <span>( @comment.CreateTime.ToString("f") )</span>

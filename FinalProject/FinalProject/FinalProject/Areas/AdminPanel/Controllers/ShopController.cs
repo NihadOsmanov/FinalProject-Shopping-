@@ -120,6 +120,13 @@ namespace FinalProject.Areas.AdminPanel.Controllers
                 return View();
             }
 
+            var isExist = _dbContext.Products.Where(x => x.IsDelete == false).Any(x => x.Name.ToLower() == product.Name.ToLower());
+            if (isExist)
+            {
+                ModelState.AddModelError("Name", "Bu adda product var");
+                return View();
+            }
+
             var fileName = await FileUtil.GenerateFileAsync(Constants.ProductImageFolderPath, product.Photo);
 
             product.Image = fileName;
@@ -138,6 +145,12 @@ namespace FinalProject.Areas.AdminPanel.Controllers
             if (Convert.ToDouble(product.Price) < 0)
             {
                 ModelState.AddModelError("", "Price can not be less than 0");
+                return View();
+            }
+
+            if (Convert.ToDouble(product.Discount) < 0)
+            {
+                ModelState.AddModelError("", "Discout can not be less than 0");
                 return View();
             }
 
@@ -197,7 +210,7 @@ namespace FinalProject.Areas.AdminPanel.Controllers
             if (id == null)
                 return NotFound();
 
-            var product = _dbContext.Products.Where(x => x.IsDelete == false).Include(x => x.ProductDetail).Include(x => x.ProductSizes).FirstOrDefault(y => y.Id == id);
+            var product = _dbContext.Products.Where(x => x.IsDelete == false).Include(x => x.ProductDetail).Include(x => x.ProductSizes).ThenInclude(x => x.Size).FirstOrDefault(y => y.Id == id);
 
             if (product == null)
                 return NotFound();
@@ -222,11 +235,7 @@ namespace FinalProject.Areas.AdminPanel.Controllers
                 return View();
             }
 
-            var dbProduct = _dbContext.Products.Where(x => x.IsDelete == false).Include(x => x.ProductDetail).Include(x => x.ProductSizes)
-                                                        .ThenInclude(x => x.Size).FirstOrDefault(y => y.Id == id);
-
-            if (dbProduct == null)
-                return NotFound();
+           
 
             if (CategoryId == null)
             {
@@ -238,6 +247,14 @@ namespace FinalProject.Areas.AdminPanel.Controllers
             {
                 ModelState.AddModelError("", "Please select Size");
                 return View();
+            }
+
+            foreach (var size in SizesId)
+            {
+                if (sizes.All(x => x.Id != (int)size))
+                {
+                    return BadRequest();
+                }
             }
 
             if (categories.All(x => x.Id != CategoryId))
@@ -256,20 +273,18 @@ namespace FinalProject.Areas.AdminPanel.Controllers
                 return BadRequest();
             }
 
-            foreach (var size in SizesId)
-            {
-                if (sizes.All(x => x.Id != (int)size))
-                {
-                    return BadRequest();
-                }
-            }
+            var dbProduct = _dbContext.Products.Where(x => x.IsDelete == false).Include(x => x.ProductDetail).Include(x => x.ProductSizes)
+                                                       .ThenInclude(x => x.Size).FirstOrDefault(y => y.Id == id);
+
+            if (dbProduct == null)
+                return NotFound();
 
             if (product.Photo != null)
             {
                 if (!product.Photo.IsImage())
                 {
                     ModelState.AddModelError("Photo", "Not the image you uploaded");
-                    return View();
+                    return View(dbProduct);
                 }
 
                 if (!product.Photo.IsSizeAllowed(1024))
@@ -287,6 +302,13 @@ namespace FinalProject.Areas.AdminPanel.Controllers
 
                 var fileName = await FileUtil.GenerateFileAsync(Constants.ProductImageFolderPath, product.Photo);
                 dbProduct.Image = fileName;
+            }
+
+            var isExist = _dbContext.Products.Where(x => x.IsDelete == false && x.Id != id).Any(x => x.Name.ToLower() == product.Name.ToLower());
+            if (isExist)
+            {
+                ModelState.AddModelError("Name", "Bu adda product var");
+                return View();
             }
 
             var productSizes = new List<ProductSize>();
